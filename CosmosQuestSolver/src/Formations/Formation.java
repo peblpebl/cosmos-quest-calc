@@ -49,6 +49,8 @@ public class Formation implements Iterable<Creature>{
         }
         return false;
     }
+
+    
     
     public static enum VictoryCondition{WIN,DRAW,LOSE};
     
@@ -92,16 +94,12 @@ public class Formation implements Iterable<Creature>{
     private long generateSeed(){
         long newSeed = 1;
         
-        
-        
         for (int i = members.size()-1; i >= 0; i--){
             newSeed = newSeed * Math.abs(members.get(i).getID()) + 1;
         }
         
-        //for each empty slot, do id=-1?
-        for (int i = 0; i < MAX_MEMBERS - members.size(); i ++){
-            newSeed += 1;
-        }
+        //empty slots (id=abs(-1))
+        newSeed += (MAX_MEMBERS - size());
         
         return newSeed;
     }
@@ -152,6 +150,10 @@ public class Formation implements Iterable<Creature>{
         catch (NoSuchElementException e){
             return null;
         }
+    }
+    
+    public Creature getCreature(int position) {
+        return members.get(position);
     }
     
     public void addCreature(Monster m) {
@@ -277,9 +279,18 @@ public class Formation implements Iterable<Creature>{
         }
     }
     
-    // at the end of each round, delete dead creatures at the front of the formation
+    // at the end of each round, delete dead creatures
     // the creatures behind, if any, will take their place at the front
     public void handleCreatureDeaths(Formation enemyFormation){
+        Iterator<Creature> iterator = members.iterator();
+        while (iterator.hasNext()) {
+            Creature c = iterator.next();
+            if (c.isDead()) {
+                c.actionOnDeath(this,enemyFormation);
+                iterator.remove();
+            }
+        }
+        /*
         for (Creature creature : members){
             if (creature.isDead()){
                 creature.actionOnDeath(this,enemyFormation);
@@ -290,6 +301,7 @@ public class Formation implements Iterable<Creature>{
             
             members.removeFirst();
         }
+*/
     }
     
     public void takeHit(Creature attacker, Formation enemyFormation) {
@@ -430,6 +442,9 @@ public class Formation implements Iterable<Creature>{
     public static void battle(Formation thisFormation, Formation enemyFormation){
         doBattlePrep(thisFormation,enemyFormation);
         
+        thisFormation.handleCreatureDeaths(enemyFormation);
+        enemyFormation.handleCreatureDeaths(thisFormation);
+        
         int roundNumber = 0;
         
         if (DEBUG){
@@ -443,6 +458,25 @@ public class Formation implements Iterable<Creature>{
                 System.out.println(thisFormation);
             }
         }
+    }
+    
+    //simulates a battle and returns the battle log
+    public static LinkedList<BattleState> getBattleSim(Formation thisFormation, Formation enemyFormation){
+        LinkedList<BattleState> states = new LinkedList<>();
+        
+        Formation.doBattlePrep(thisFormation,enemyFormation);
+        thisFormation.handleCreatureDeaths(enemyFormation);
+        enemyFormation.handleCreatureDeaths(thisFormation);
+        
+        int roundNumber = 0;
+        states.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy(),roundNumber));
+        
+        while(!(thisFormation.isEmpty() || enemyFormation.isEmpty()) && roundNumber < Formation.STALEMATE_CUTOFF_POINT){
+            roundNumber ++;
+            Formation.doOneRound(thisFormation,enemyFormation);
+            states.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy(),roundNumber));
+        }
+        return states;
     }
     
     public static void doBattlePrep(Formation thisFormation, Formation enemyFormation){

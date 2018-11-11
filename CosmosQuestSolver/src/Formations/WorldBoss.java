@@ -73,10 +73,6 @@ public class WorldBoss extends Creature{
         
     }
     
-    @Override
-    public void takeAOEDamage(double damage, Formation thisFormation) {
-        //world bosses don't take AOE damage
-    }
     
     @Override
     public void draw(Graphics g) {

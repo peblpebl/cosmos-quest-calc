@@ -9,12 +9,12 @@ import cosmosquestsolver.OtherThings;
 
 //multiplies the owner's base attack power by a specified amount every time
 //the user attacks. Used by Aural, Geum, and Ascended Geum
-public class MultiplyAttack extends SpecialAbility{
+public class Berserk extends SpecialAbility{
     
     private double multiplier;
     private double damage = 0;
 
-    public MultiplyAttack(Creature owner, double multiplier) {
+    public Berserk(Creature owner, double multiplier) {
         super(owner);
         this.multiplier = multiplier;
     }
@@ -30,7 +30,7 @@ public class MultiplyAttack extends SpecialAbility{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new MultiplyAttack(newOwner,multiplier);
+        return new Berserk(newOwner,multiplier);
     }
     
     @Override

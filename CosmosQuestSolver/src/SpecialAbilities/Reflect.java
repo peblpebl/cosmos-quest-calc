@@ -23,10 +23,6 @@ public class Reflect extends SpecialAbility{
         damageTakenThisRound = 0;
     }
     
-    @Override
-    public double extraDamage(Formation thisFormation, Formation enemyFormation) {
-        return 0;
-    }
 
     @Override
     public void recordDamageTaken(long damage){//is this skill asymetric? (which side you're on matters)
@@ -37,7 +33,7 @@ public class Reflect extends SpecialAbility{
     @Override
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {
         if (thisFormation.getFrontCreature() == owner){//can only reflect direct damage while in front
-            enemyFormation.getFrontCreature().changeHP(-damageTakenThisRound*multiplier,enemyFormation);//elemental damage boost not considered. Opponent defence?*
+            enemyFormation.getFrontCreature().changeHP(-damageTakenThisRound*multiplier,enemyFormation);//elemental damage boost and defence not considered.
         }
     }
     
@@ -56,7 +52,7 @@ public class Reflect extends SpecialAbility{
     
     @Override
     public int viability() {
-        return owner.getBaseHP() * owner.getBaseAtt() * 2;
+        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+multiplier));
     }
     
 }

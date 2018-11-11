@@ -12,9 +12,9 @@ import cosmosquestsolver.OtherThings;
 //if the hero is alone against a formation of 6, the ability reduces each
 //enemy's hp to 1/6th its original value. has no effect if the user's formation
 //has more creatures than the enemy's formation. Used by Leprechaun
-public class OutnumberedPercentDamage extends SpecialAbility{
+public class EvenField extends SpecialAbility{//enemies cannot heal back to full health*
 
-    public OutnumberedPercentDamage(Creature owner) {
+    public EvenField(Creature owner) {
         super(owner);
     }
     
@@ -22,7 +22,7 @@ public class OutnumberedPercentDamage extends SpecialAbility{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new OutnumberedPercentDamage(newOwner);
+        return new EvenField(newOwner);
     }
     
     @Override
@@ -32,8 +32,9 @@ public class OutnumberedPercentDamage extends SpecialAbility{
             return;
         }
         for (Creature creature : enemyFormation){
-            double damageDelt = creature.getBaseHP() * percentDamage;
+            double damageDelt = creature.getBaseHP() * percentDamage  * (1 - enemyFormation.getAOEResistance());
             creature.changeHP(-damageDelt,enemyFormation);//rounding?
+            creature.setBaseHP(creature.getCurrentHP());//units cannot heal past the new HP cap (visual: hp are white, not red)
         }
     }
 

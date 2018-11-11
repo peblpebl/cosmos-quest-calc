@@ -24,13 +24,8 @@ public class ScaleableStartingDamage extends StartingDamage{
     
     @Override
     public void startOfFightAction2(Formation thisFormation, Formation enemyFormation) {
-        //enemyFormation.takeAOEDamage((amount * (int)(owner.getLevel() / levelMilestone)));//not affected by bubbles
-        if (owner instanceof Levelable){
-            Levelable levelable = (Levelable) owner;
-            for (Creature creature : enemyFormation.getMembers()){
-                creature.takeAOEDamage(roundedScaleMilestone(levelable,amount,levelMilestone),thisFormation);
-            }
-        }
+        Levelable levelable = (Levelable) owner;
+        enemyFormation.takeAOEDamage((amount * (int)(levelable.getLevel() / levelMilestone)));
     }
     
     @Override

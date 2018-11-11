@@ -35,8 +35,9 @@ public class CriticalHit extends SpecialAbility{
         turn ++;
     }
     
+    @Override
     public double extraDamage(Formation thisFormation, Formation enemyFormation){//damage boost from other heroes stacks with crit
-        if (Math.abs(thisFormation.getTurnSeed(enemyFormation,turn)) % 2 == 1){
+        if (true/*Math.abs(thisFormation.getTurnSeed(enemyFormation,turn)) % 2 == 1*/){
             //test this more with data?
             return (multiplier-1) * (owner.getCurrentAtt()+owner.getAttBoost()-(enemyFormation.getFrontCreature().getArmor()/owner.elementDamageMultiplier(enemyFormation.getFrontCreature().getElement())));
         }
@@ -64,10 +65,14 @@ public class CriticalHit extends SpecialAbility{
     }
     */
     
+    //https://github.com/GizmoMar/C-Hero-Calc/commit/b9e0ecd3c9860d9dd0016ca6910b5f237c37affd
+    
     @Override
     public String getDescription() {
-        String percent = Integer.toString((int)(multiplier * 100));
-        return "Has a 50% chance to deal " + percent + "% damage";
+        if ((int)multiplier == multiplier){
+            return "Has a 50% chance to deal x" + (int)multiplier + " damage";
+        }
+        return "Has a 50% chance to deal x" + multiplier + " damage";
     }
     
     @Override

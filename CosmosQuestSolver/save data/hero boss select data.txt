@@ -38,7 +38,7 @@ Taint,false,false
 Putrid,false,false
 Defile,false,false
 Ascended Alpha,false,false
-Ascended Athos,false,false
+Ascended Athos,true,false
 Ascended Rei,false,false
 Ascended Auri,false,false
 Ascended TR0N1X,false,false
@@ -49,6 +49,7 @@ Ascended Atzar,false,false
 Ascended Rigr,true,false
 Ascended Dagda,false,false
 Ascended Bavah,false,false
+Ascended Defile,false,false
 Valor,false,false
 Rokka,false,false
 Pyromancer,false,false
@@ -101,6 +102,9 @@ James,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
 Dullahan,false,false
+Billy,false,false
+Sanqueen,false,false
+Cliodhna,false,false
 Christmas Elf,true,false
 Reindeer,false,false
 Santa Claus,false,false
@@ -114,7 +118,8 @@ Tiny,false,false
 Nebra,false,false
 Bubbles,false,false
 Dr Hawking,false,false
-Neil,true,true
+Neil,true,false
+Guy,false,false
 Dicemaster,false,false
 Luxurius Maximus,false,false
 Pokerface,false,false

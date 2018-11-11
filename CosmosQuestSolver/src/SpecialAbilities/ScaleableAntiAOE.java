@@ -26,7 +26,7 @@ public class ScaleableAntiAOE extends AntiAOE{
     }
     
     @Override
-    public void startOfFightAction(Formation thisFormation, Formation enemyFormation) {
+    public void prepareForFight(Formation thisFormation, Formation enemyFormation) {
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;
             double AOEResistance = percent * levelable.getLevel();
@@ -54,6 +54,9 @@ public class ScaleableAntiAOE extends AntiAOE{
         }
         String percentStr = "";
         double times100 = percent * 100;
+        if (times100 > 100){
+                times100 = 100;
+            }
         if (times100 % 1 == 0){
             percentStr = Integer.toString((int) times100);
         }
@@ -64,6 +67,9 @@ public class ScaleableAntiAOE extends AntiAOE{
         String percentLevelStr = "";
         Levelable l = (Levelable)owner;
         double times100Level = percent * 100 * l.getLevel();
+        if (times100Level > 100){
+                times100Level = 100;
+            }
         if (times100Level % 1 == 0){
             percentLevelStr = Integer.toString((int) times100Level);
         }
@@ -80,7 +86,8 @@ public class ScaleableAntiAOE extends AntiAOE{
     
     @Override
     public int viability() {
-        return owner.getBaseHP() * owner.getBaseAtt();
+        Levelable l = (Levelable)owner;
+        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+(percent*l.getLevel()*0.01)));
     }
     
 }

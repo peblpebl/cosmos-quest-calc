@@ -26,7 +26,7 @@ public class AntiAOE extends SpecialAbility{
     }
     
     @Override
-    public void startOfFightAction(Formation thisFormation, Formation enemyFormation) {
+    public void prepareForFight(Formation thisFormation, Formation enemyFormation) {
         double tempPer = percent;
         if (tempPer > 1){
             tempPer = 1;

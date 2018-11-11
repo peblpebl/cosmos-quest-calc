@@ -12,11 +12,11 @@ import Formations.Levelable;
 //while creature is alive. Increases lineraly as level increaces. Used by
 //Halloween heroes, quest heroes 13-20, Ascended Athos, Ascended Rei, and
 //Ascended Bavah
-public class ScaleableStatBoost extends StatBoost{
+public class ScaleableStatAura extends StatAura{
         
     private double levelMilestone;
     
-    public ScaleableStatBoost(Creature owner, int attBoost, int armorBoost, Creature.Element element, double levelMilestone) {//if elsment is null, apply to all creatures
+    public ScaleableStatAura(Creature owner, int attBoost, int armorBoost, Creature.Element element, double levelMilestone) {//if elsment is null, apply to all creatures
         super(owner,attBoost,armorBoost,element);
         this.levelMilestone = levelMilestone;
     }
@@ -25,7 +25,7 @@ public class ScaleableStatBoost extends StatBoost{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new ScaleableStatBoost(newOwner,attBoost,armorBoost,element,levelMilestone);
+        return new ScaleableStatAura(newOwner,attBoost,armorBoost,element,levelMilestone);
     }
     
     @Override

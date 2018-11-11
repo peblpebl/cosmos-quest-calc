@@ -184,9 +184,9 @@ public abstract class Creature implements Comparable<Creature>{
         }
     }
     
-    //bosses don't take AOE Damage, doesn't matter, damage is calculated in takeHit()
+    
     public void takeAOEDamage(double damage, Formation thisFormation) {
-        changeHP(-damage,thisFormation);//AOE damage counting towards total formation damage?
+        changeHP(-damage,thisFormation);
     }
     
     public double determineDamage(Creature target, Formation thisFormation, Formation enemyFormation){
@@ -234,7 +234,7 @@ public abstract class Creature implements Comparable<Creature>{
         }
     }
     
-    protected double damageFromElement(double baseDamage,Element elementAttacked){
+    public double damageFromElement(double baseDamage,Element elementAttacked){
         if (elementWeakness(elementAttacked) == element){
             return baseDamage * (ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost());
         }
@@ -242,7 +242,16 @@ public abstract class Creature implements Comparable<Creature>{
             return baseDamage;
         }
     }
-    
+    /*
+    public static double damageFromElement(double baseDamage, Element elementAttacked, Element thisElement){
+        if (elementWeakness(elementAttacked) == thisElement){
+            return baseDamage * (ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost());
+        }
+        else{
+            return baseDamage;
+        }
+    }
+    */
     @Override
     public int compareTo(Creature c) {
         return c.getID() - getID();

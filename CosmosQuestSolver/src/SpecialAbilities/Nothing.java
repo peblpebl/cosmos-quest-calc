@@ -6,7 +6,8 @@ package SpecialAbilities;
 import Formations.Creature;
 import Formations.Formation;
 
-//null object pattern for monsters
+//null object pattern.
+//used by monsters
 public class Nothing extends SpecialAbility{
 
     public Nothing(Creature owner) {

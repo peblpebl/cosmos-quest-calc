@@ -1,15 +1,15 @@
 Hunter,99
 Shaman,99
-Alpha,76
+Alpha,99
 Carl,99
 Nimue,99
-Athos,69
+Athos,99
 Jet,99
 Geron,99
-Rei,84
+Rei,99
 Ailen,99
 Faefyr,99
-Auri,66
+Auri,99
 K41RY,99
 T4URUS,99
 TR0N1X,99
@@ -18,37 +18,38 @@ Aeris,99
 Geum,99
 Rudean,99
 Aural,99
-Geror,73
+Geror,99
 Ourea,99
 Erebus,99
 Pontus,99
 Oymos,99
 Xarth,99
-Atzar,75
+Atzar,99
 Hama,99
 Hallinskidi,99
 Rigr,99
 Toth,99
 Ganah,99
-Dagda,77
+Dagda,99
 Bylar,99
 Boor,99
-Bavah,79
+Bavah,99
 Taint,99
 Putrid,99
-Defile,60
+Defile,99
 Ascended Alpha,1
-Ascended Athos,1
+Ascended Athos,15
 Ascended Rei,1
 Ascended Auri,1
-Ascended TR0N1X,87
-Ascended Geum,86
+Ascended TR0N1X,92
+Ascended Geum,99
 Ascended Geror,1
-Ascended Pontus,87
+Ascended Pontus,90
 Ascended Atzar,1
-Ascended Rigr,76
+Ascended Rigr,79
 Ascended Dagda,1
 Ascended Bavah,1
+Ascended Defile,1
 Valor,99
 Rokka,99
 Pyromancer,99
@@ -74,9 +75,9 @@ Jade,99
 Edana,1
 Dybbuk,1
 Ascended Shygu,56
-Ascended Thert,78
+Ascended Thert,99
 Ascended Lord Kirk,1
-Ascended Neptunius,1
+Ascended Neptunius,89
 Ascended Hosokawa,1
 Ascended Takeda,1
 Ascended Hirate,1
@@ -90,9 +91,9 @@ Gurth,1
 Sigrun,18
 Koldis,21
 Alvitr,23
-Arshen,1
+Arshen,12
 Rua,99
-Dorth,3
+Dorth,99
 Kumu san,1
 Liu Cheng,1
 Hidoka,1
@@ -101,6 +102,9 @@ James,1
 Werewolf,99
 Jack'o Knight,1
 Dullahan,1
+Billy,1
+Sanqueen,1
+Cliodhna,1
 Christmas Elf,27
 Reindeer,12
 Santa Claus,5
@@ -113,8 +117,9 @@ Lady of Twilight,1
 Tiny,1
 Nebra,1
 Bubbles,1
-Dr Hawking,1
+Dr Hawking,54
 Neil,99
+Guy,1
 Dicemaster,1
 Luxurius Maximus,1
 Pokerface,99

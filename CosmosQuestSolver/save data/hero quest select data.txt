@@ -21,13 +21,13 @@ Aural,false,false
 Geror,false,false
 Ourea,false,false
 Erebus,false,false
-Pontus,true,false
+Pontus,false,false
 Oymos,false,false
 Xarth,false,false
 Atzar,false,false
 Hama,false,false
 Hallinskidi,false,false
-Rigr,true,false
+Rigr,false,false
 Toth,false,false
 Ganah,false,false
 Dagda,false,false
@@ -36,7 +36,7 @@ Boor,false,false
 Bavah,false,false
 Taint,false,false
 Putrid,false,false
-Defile,false,false
+Defile,true,false
 Ascended Alpha,false,false
 Ascended Athos,false,false
 Ascended Rei,false,false
@@ -49,6 +49,7 @@ Ascended Atzar,false,false
 Ascended Rigr,true,false
 Ascended Dagda,false,false
 Ascended Bavah,false,false
+Ascended Defile,false,false
 Valor,false,false
 Rokka,false,false
 Pyromancer,false,false
@@ -76,7 +77,7 @@ Dybbuk,false,false
 Ascended Shygu,true,false
 Ascended Thert,true,false
 Ascended Lord Kirk,false,false
-Ascended Neptunius,false,false
+Ascended Neptunius,true,false
 Ascended Hosokawa,false,false
 Ascended Takeda,false,false
 Ascended Hirate,false,false
@@ -92,19 +93,22 @@ Koldis,false,false
 Alvitr,false,false
 Arshen,false,false
 Rua,true,false
-Dorth,false,false
+Dorth,true,false
 Kumu san,false,false
 Liu Cheng,false,false
 Hidoka,false,false
 Master Lee,true,false
 James,false,false
-Werewolf,true,false
+Werewolf,false,false
 Jack'o Knight,false,false
 Dullahan,false,false
+Billy,false,false
+Sanqueen,false,false
+Cliodhna,false,false
 Christmas Elf,false,false
 Reindeer,false,false
 Santa Claus,false,false
-Sexy Santa,true,false
+Sexy Santa,false,false
 Leprechaun,true,false
 Sparks,false,false
 Leaf,false,false
@@ -113,8 +117,9 @@ Lady of Twilight,false,false
 Tiny,false,false
 Nebra,false,false
 Bubbles,false,false
-Dr Hawking,false,false
+Dr Hawking,true,false
 Neil,true,false
+Guy,false,false
 Dicemaster,false,false
 Luxurius Maximus,false,false
 Pokerface,true,false

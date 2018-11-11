@@ -3,34 +3,7 @@
  */
 package Formations;
 
-import SpecialAbilities.AOE;
-import SpecialAbilities.AddAttack;
-import SpecialAbilities.AntiAOE;
-import SpecialAbilities.Wither;
-import SpecialAbilities.BloodBomb;
-import SpecialAbilities.Revenge;
-import SpecialAbilities.CriticalHit;
-import SpecialAbilities.DamageOverflow;
-import SpecialAbilities.ElementDamageBoost;
-import SpecialAbilities.Heal;
-import SpecialAbilities.Intercept;
-import SpecialAbilities.MonsterBuff;
-import SpecialAbilities.MultiplyAttack;
-import SpecialAbilities.OutnumberedPercentDamage;
-import SpecialAbilities.Purity;
-import SpecialAbilities.Rainbow;
-import SpecialAbilities.RandomStatBoost;
-import SpecialAbilities.RandomTarget;
-import SpecialAbilities.Reflect;
-import SpecialAbilities.Ricochet;
-import SpecialAbilities.ScaleableAOE;
-import SpecialAbilities.ScaleableAntiAOE;
-import SpecialAbilities.ScaleableHeal;
-import SpecialAbilities.ScaleableLifeSteal;
-import SpecialAbilities.ScaleableStartingDamage;
-import SpecialAbilities.ScaleableStatBoost;
-import SpecialAbilities.StatBoost;
-import SpecialAbilities.StatLevelBoost;
+import SpecialAbilities.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -430,101 +403,102 @@ public class CreatureFactory {
         heroNames = new ArrayList<>();
         
         //chest heroes
-        addHero("Hunter",new Hero(Creature.Element.AIR,14,22,Hero.Rarity.COMMON,7,new StatBoost(null,2,0,Creature.Element.AIR)));//get rid of owner in constructor? no. copying.
-        addHero("Shaman",new Hero(Creature.Element.EARTH,20,40,Hero.Rarity.RARE,8,new StatBoost(null,0,2,Creature.Element.EARTH)));
+        addHero("Hunter",new Hero(Creature.Element.AIR,14,22,Hero.Rarity.COMMON,7,new StatAura(null,2,0,Creature.Element.AIR)));//get rid of owner in constructor? no. copying.
+        addHero("Shaman",new Hero(Creature.Element.EARTH,20,40,Hero.Rarity.RARE,8,new StatAura(null,0,2,Creature.Element.EARTH)));
         addHero("Alpha",new Hero(Creature.Element.FIRE,22,82,Hero.Rarity.LEGENDARY,9,new AOE(null,1)));
-        addHero("Carl",new Hero(Creature.Element.WATER,12,28,Hero.Rarity.COMMON,10,new StatBoost(null,2,0,Creature.Element.WATER)));
-        addHero("Nimue",new Hero(Creature.Element.AIR,22,38,Hero.Rarity.RARE,11,new StatBoost(null,0,2,Creature.Element.AIR)));
-        addHero("Athos",new Hero(Creature.Element.EARTH,26,70,Hero.Rarity.LEGENDARY,12,new StatBoost(null,0,2,null)));
-        addHero("Jet",new Hero(Creature.Element.FIRE,16,24,Hero.Rarity.COMMON,13,new StatBoost(null,2,0,Creature.Element.FIRE)));
-        addHero("Geron",new Hero(Creature.Element.WATER,24,36,Hero.Rarity.RARE,14,new StatBoost(null,0,2,Creature.Element.WATER)));
-        addHero("Rei",new Hero(Creature.Element.AIR,40,46,Hero.Rarity.LEGENDARY,15,new StatBoost(null,2,0,null)));
-        addHero("Ailen",new Hero(Creature.Element.EARTH,22,19,Hero.Rarity.COMMON,16,new StatBoost(null,2,0,Creature.Element.EARTH)));
-        addHero("Faefyr",new Hero(Creature.Element.FIRE,18,50,Hero.Rarity.RARE,17,new StatBoost(null,0,2,Creature.Element.FIRE)));
+        addHero("Carl",new Hero(Creature.Element.WATER,12,28,Hero.Rarity.COMMON,10,new StatAura(null,2,0,Creature.Element.WATER)));
+        addHero("Nimue",new Hero(Creature.Element.AIR,22,38,Hero.Rarity.RARE,11,new StatAura(null,0,2,Creature.Element.AIR)));
+        addHero("Athos",new Hero(Creature.Element.EARTH,26,70,Hero.Rarity.LEGENDARY,12,new StatAura(null,0,2,null)));
+        addHero("Jet",new Hero(Creature.Element.FIRE,16,24,Hero.Rarity.COMMON,13,new StatAura(null,2,0,Creature.Element.FIRE)));
+        addHero("Geron",new Hero(Creature.Element.WATER,24,36,Hero.Rarity.RARE,14,new StatAura(null,0,2,Creature.Element.WATER)));
+        addHero("Rei",new Hero(Creature.Element.AIR,40,46,Hero.Rarity.LEGENDARY,15,new StatAura(null,2,0,null)));
+        addHero("Ailen",new Hero(Creature.Element.EARTH,22,19,Hero.Rarity.COMMON,16,new StatAura(null,2,0,Creature.Element.EARTH)));
+        addHero("Faefyr",new Hero(Creature.Element.FIRE,18,50,Hero.Rarity.RARE,17,new StatAura(null,0,2,Creature.Element.FIRE)));
         addHero("Auri",new Hero(Creature.Element.WATER,32,60,Hero.Rarity.LEGENDARY,18,new Heal(null,2)));
-        addHero("K41RY",new Hero(Creature.Element.AIR,16,28,Hero.Rarity.COMMON,21,new StatBoost(null,3,0,Creature.Element.AIR)));
-        addHero("T4URUS",new Hero(Creature.Element.EARTH,20,46,Hero.Rarity.RARE,22,new StatBoost(null,1,0,null)));
+        addHero("K41RY",new Hero(Creature.Element.AIR,16,28,Hero.Rarity.COMMON,21,new StatAura(null,3,0,Creature.Element.AIR)));
+        addHero("T4URUS",new Hero(Creature.Element.EARTH,20,46,Hero.Rarity.RARE,22,new StatAura(null,1,0,null)));
         addHero("TR0N1X",new Hero(Creature.Element.FIRE,20,100,Hero.Rarity.LEGENDARY,23,new AOE(null,3)));
-        addHero("Aquortis",new Hero(Creature.Element.WATER,8,58,Hero.Rarity.COMMON,24,new StatBoost(null,3,0,Creature.Element.WATER)));
+        addHero("Aquortis",new Hero(Creature.Element.WATER,8,58,Hero.Rarity.COMMON,24,new StatAura(null,3,0,Creature.Element.WATER)));
         addHero("Aeris",new Hero(Creature.Element.AIR,32,30,Hero.Rarity.RARE,25,new Heal(null,1)));
-        addHero("Geum",new Hero(Creature.Element.EARTH,2,75,Hero.Rarity.LEGENDARY,26,new MultiplyAttack(null,2)));
-        addHero("Rudean",new Hero(Creature.Element.FIRE,12,38,Hero.Rarity.COMMON,30,new StatBoost(null,3,0,Creature.Element.FIRE)));
-        addHero("Aural",new Hero(Creature.Element.WATER,50,18,Hero.Rarity.RARE,31,new MultiplyAttack(null,1.2)));
+        addHero("Geum",new Hero(Creature.Element.EARTH,2,75,Hero.Rarity.LEGENDARY,26,new Berserk(null,2)));
+        addHero("Rudean",new Hero(Creature.Element.FIRE,12,38,Hero.Rarity.COMMON,30,new StatAura(null,3,0,Creature.Element.FIRE)));
+        addHero("Aural",new Hero(Creature.Element.WATER,50,18,Hero.Rarity.RARE,31,new Berserk(null,1.2)));
         addHero("Geror",new Hero(Creature.Element.AIR,46,46,Hero.Rarity.LEGENDARY,32,new MonsterBuff(null,1.2)));
-        addHero("Ourea",new Hero(Creature.Element.EARTH,16,30,Hero.Rarity.COMMON,36,new StatBoost(null,3,0,Creature.Element.EARTH)));
-        addHero("Erebus",new Hero(Creature.Element.FIRE,20,48,Hero.Rarity.RARE,37,new StatBoost(null,2,2,Creature.Element.FIRE)));
+        addHero("Ourea",new Hero(Creature.Element.EARTH,16,30,Hero.Rarity.COMMON,36,new StatAura(null,3,0,Creature.Element.EARTH)));
+        addHero("Erebus",new Hero(Creature.Element.FIRE,20,48,Hero.Rarity.RARE,37,new StatAura(null,2,2,Creature.Element.FIRE)));
         addHero("Pontus",new Hero(Creature.Element.WATER,36,62,Hero.Rarity.LEGENDARY,38,new Purity(null,2)));
-        addHero("Oymos",new Hero(Creature.Element.AIR,14,36,Hero.Rarity.COMMON,45,new StatBoost(null,4,0,Creature.Element.AIR)));
-        addHero("Xarth",new Hero(Creature.Element.EARTH,32,32,Hero.Rarity.RARE,46,new StatBoost(null,2,2,Creature.Element.EARTH)));
+        addHero("Oymos",new Hero(Creature.Element.AIR,14,36,Hero.Rarity.COMMON,45,new StatAura(null,4,0,Creature.Element.AIR)));
+        addHero("Xarth",new Hero(Creature.Element.EARTH,32,32,Hero.Rarity.RARE,46,new StatAura(null,2,2,Creature.Element.EARTH)));
         addHero("Atzar",new Hero(Creature.Element.FIRE,32,76,Hero.Rarity.LEGENDARY,47,new Purity(null,2)));
-        addHero("Hama",new Hero(Creature.Element.WATER,18,30,Hero.Rarity.COMMON,62,new StatBoost(null,4,0,Creature.Element.WATER)));
-        addHero("Hallinskidi",new Hero(Creature.Element.AIR,34,34,Hero.Rarity.RARE,63,new StatBoost(null,2,2,Creature.Element.AIR)));
+        addHero("Hama",new Hero(Creature.Element.WATER,18,30,Hero.Rarity.COMMON,62,new StatAura(null,4,0,Creature.Element.WATER)));
+        addHero("Hallinskidi",new Hero(Creature.Element.AIR,34,34,Hero.Rarity.RARE,63,new StatAura(null,2,2,Creature.Element.AIR)));
         addHero("Rigr",new Hero(Creature.Element.EARTH,42,60,Hero.Rarity.LEGENDARY,64,new Purity(null,2)));
-        addHero("Toth",new Hero(Creature.Element.FIRE,24,24,Hero.Rarity.COMMON,77,new StatBoost(null,4,0,Creature.Element.FIRE)));
-        addHero("Ganah",new Hero(Creature.Element.WATER,30,40,Hero.Rarity.RARE,78,new StatBoost(null,2,2,Creature.Element.WATER)));
+        addHero("Toth",new Hero(Creature.Element.FIRE,24,24,Hero.Rarity.COMMON,77,new StatAura(null,4,0,Creature.Element.FIRE)));
+        addHero("Ganah",new Hero(Creature.Element.WATER,30,40,Hero.Rarity.RARE,78,new StatAura(null,2,2,Creature.Element.WATER)));
         addHero("Dagda",new Hero(Creature.Element.AIR,46,58,Hero.Rarity.LEGENDARY,79,new Purity(null,2)));
-        addHero("Bylar",new Hero(Creature.Element.EARTH,20,30,Hero.Rarity.COMMON,93,new StatBoost(null,4,0,Creature.Element.EARTH)));
-        addHero("Boor",new Hero(Creature.Element.FIRE,36,36,Hero.Rarity.RARE,94,new AddAttack(null,3)));
-        addHero("Bavah",new Hero(Creature.Element.WATER,52,52,Hero.Rarity.LEGENDARY,95,new StatBoost(null,2,2,null)));
+        addHero("Bylar",new Hero(Creature.Element.EARTH,20,30,Hero.Rarity.COMMON,93,new StatAura(null,4,0,Creature.Element.EARTH)));
+        addHero("Boor",new Hero(Creature.Element.FIRE,36,36,Hero.Rarity.RARE,94,new Train(null,3)));
+        addHero("Bavah",new Hero(Creature.Element.WATER,52,52,Hero.Rarity.LEGENDARY,95,new StatAura(null,2,2,null)));
         addHero("Taint",new Hero(Creature.Element.AIR,25,25,Hero.Rarity.COMMON,110,new Ricochet(null,0.5,5)));
-        addHero("Putrid",new Hero(Creature.Element.EARTH,50,48,Hero.Rarity.RARE,111,new AddAttack(null,-3)));
+        addHero("Putrid",new Hero(Creature.Element.EARTH,50,48,Hero.Rarity.RARE,111,new Train(null,-3)));
         addHero("Defile",new Hero(Creature.Element.FIRE,48,52,Hero.Rarity.LEGENDARY,112,new BloodBomb(null,50)));
         
         //ascended chest heroes
         addHero("Ascended Alpha",new Hero(Creature.Element.FIRE,46,174,Hero.Rarity.ASCENDED,65,new ScaleableAOE(null,1,3.3)));
-        addHero("Ascended Athos",new Hero(Creature.Element.EARTH,60,162,Hero.Rarity.ASCENDED,66,new ScaleableStatBoost(null,0,1,null,3.3)));
-        addHero("Ascended Rei",new Hero(Creature.Element.AIR,104,120,Hero.Rarity.ASCENDED,67,new ScaleableStatBoost(null,1,0,null,3.3)));
+        addHero("Ascended Athos",new Hero(Creature.Element.EARTH,60,162,Hero.Rarity.ASCENDED,66,new ScaleableStatAura(null,0,1,null,3.3)));
+        addHero("Ascended Rei",new Hero(Creature.Element.AIR,104,120,Hero.Rarity.ASCENDED,67,new ScaleableStatAura(null,1,0,null,3.3)));
         addHero("Ascended Auri",new Hero(Creature.Element.WATER,78,148,Hero.Rarity.ASCENDED,68,new ScaleableHeal(null,1,6.58)));
         addHero("Ascended TR0N1X",new Hero(Creature.Element.FIRE,38,190,Hero.Rarity.ASCENDED,69,new Ricochet(null,0.75,5)));
-        addHero("Ascended Geum",new Hero(Creature.Element.EARTH,8,222,Hero.Rarity.ASCENDED,70,new MultiplyAttack(null,2)));
+        addHero("Ascended Geum",new Hero(Creature.Element.EARTH,8,222,Hero.Rarity.ASCENDED,70,new Berserk(null,2)));
         addHero("Ascended Geror",new Hero(Creature.Element.AIR,116,116,Hero.Rarity.ASCENDED,71,new MonsterBuff(null,1.3)));
         addHero("Ascended Pontus",new Hero(Creature.Element.WATER,86,150,Hero.Rarity.ASCENDED,81,new Purity(null,3)));
         addHero("Ascended Atzar",new Hero(Creature.Element.FIRE,81,162,Hero.Rarity.ASCENDED,82,new Purity(null,3)));
         addHero("Ascended Rigr",new Hero(Creature.Element.EARTH,99,141,Hero.Rarity.ASCENDED,86,new Purity(null,3)));
         addHero("Ascended Dagda",new Hero(Creature.Element.AIR,107,135,Hero.Rarity.ASCENDED,92,new Purity(null,3)));
-        addHero("Ascended Bavah",new Hero(Creature.Element.WATER,122,122,Hero.Rarity.ASCENDED,100,new ScaleableStatBoost(null,1,1,null,6.58)));
+        addHero("Ascended Bavah",new Hero(Creature.Element.WATER,122,122,Hero.Rarity.ASCENDED,100,new ScaleableStatAura(null,1,1,null,6.58)));
+        addHero("Ascended Defile",new Hero(Creature.Element.FIRE,114,126,Hero.Rarity.ASCENDED,131,new BloodBomb(null,150)));
         
         //quest heroes
-        addHero("Valor",new Hero(Creature.Element.AIR,10,20,Hero.Rarity.COMMON,3,new StatBoost(null,0,1,Creature.Element.AIR)));
-        addHero("Rokka",new Hero(Creature.Element.EARTH,8,30,Hero.Rarity.COMMON,4,new StatBoost(null,0,1,Creature.Element.EARTH)));
-        addHero("Pyromancer",new Hero(Creature.Element.FIRE,12,24,Hero.Rarity.COMMON,5,new StatBoost(null,0,1,Creature.Element.FIRE)));
-        addHero("Bewat",new Hero(Creature.Element.WATER,6,50,Hero.Rarity.COMMON,6,new StatBoost(null,0,1,Creature.Element.WATER)));
-        addHero("Nicte",new Hero(Creature.Element.AIR,32,22,Hero.Rarity.RARE,19,new StatBoost(null,4,0,Creature.Element.AIR)));
-        addHero("Forest Druid",new Hero(Creature.Element.EARTH,16,46,Hero.Rarity.RARE,27,new StatBoost(null,4,0,Creature.Element.EARTH)));
-        addHero("Ignitor",new Hero(Creature.Element.FIRE,24,32,Hero.Rarity.RARE,28,new StatBoost(null,4,0,Creature.Element.FIRE)));
-        addHero("Undine",new Hero(Creature.Element.WATER,14,58,Hero.Rarity.RARE,29,new StatBoost(null,4,0,Creature.Element.WATER)));
-        addHero("Chroma",new Hero(Creature.Element.AIR,20,52,Hero.Rarity.RARE,39,new StatBoost(null,0,4,Creature.Element.AIR)));
-        addHero("Petry",new Hero(Creature.Element.EARTH,44,26,Hero.Rarity.RARE,40,new StatBoost(null,0,4,Creature.Element.EARTH)));
-        addHero("Zaytus",new Hero(Creature.Element.FIRE,22,58,Hero.Rarity.RARE,41,new StatBoost(null,0,4,Creature.Element.FIRE)));
-        addHero("Lady Odelith",new Hero(Creature.Element.WATER,36,36,Hero.Rarity.RARE,54,new StatBoost(null,0,4,Creature.Element.WATER)));
-        addHero("Shygu",new Hero(Creature.Element.AIR,54,34,Hero.Rarity.LEGENDARY,55,new ScaleableStatBoost(null,0,1,Creature.Element.AIR,9)));
-        addHero("Thert",new Hero(Creature.Element.EARTH,28,72,Hero.Rarity.LEGENDARY,56,new ScaleableStatBoost(null,0,1,Creature.Element.EARTH,9)));
-        addHero("Lord Kirk",new Hero(Creature.Element.FIRE,64,32,Hero.Rarity.LEGENDARY,57,new ScaleableStatBoost(null,0,1,Creature.Element.FIRE,9)));
-        addHero("Neptunius",new Hero(Creature.Element.WATER,70,30,Hero.Rarity.LEGENDARY,58,new ScaleableStatBoost(null,0,1,Creature.Element.WATER,9)));
-        addHero("Hosokawa",new Hero(Creature.Element.AIR,50,42,Hero.Rarity.LEGENDARY,88,new ScaleableStatBoost(null,1,0,Creature.Element.AIR,9)));
-        addHero("Takeda",new Hero(Creature.Element.EARTH,66,32,Hero.Rarity.LEGENDARY,89,new ScaleableStatBoost(null,1,0,Creature.Element.EARTH,9)));
-        addHero("Hirate",new Hero(Creature.Element.FIRE,56,38,Hero.Rarity.LEGENDARY,90,new ScaleableStatBoost(null,1,0,Creature.Element.FIRE,9)));
-        addHero("Hattori",new Hero(Creature.Element.WATER,48,44,Hero.Rarity.LEGENDARY,91,new ScaleableStatBoost(null,1,0,Creature.Element.WATER,9)));
+        addHero("Valor",new Hero(Creature.Element.AIR,10,20,Hero.Rarity.COMMON,3,new StatAura(null,0,1,Creature.Element.AIR)));
+        addHero("Rokka",new Hero(Creature.Element.EARTH,8,30,Hero.Rarity.COMMON,4,new StatAura(null,0,1,Creature.Element.EARTH)));
+        addHero("Pyromancer",new Hero(Creature.Element.FIRE,12,24,Hero.Rarity.COMMON,5,new StatAura(null,0,1,Creature.Element.FIRE)));
+        addHero("Bewat",new Hero(Creature.Element.WATER,6,50,Hero.Rarity.COMMON,6,new StatAura(null,0,1,Creature.Element.WATER)));
+        addHero("Nicte",new Hero(Creature.Element.AIR,32,22,Hero.Rarity.RARE,19,new StatAura(null,4,0,Creature.Element.AIR)));
+        addHero("Forest Druid",new Hero(Creature.Element.EARTH,16,46,Hero.Rarity.RARE,27,new StatAura(null,4,0,Creature.Element.EARTH)));
+        addHero("Ignitor",new Hero(Creature.Element.FIRE,24,32,Hero.Rarity.RARE,28,new StatAura(null,4,0,Creature.Element.FIRE)));
+        addHero("Undine",new Hero(Creature.Element.WATER,14,58,Hero.Rarity.RARE,29,new StatAura(null,4,0,Creature.Element.WATER)));
+        addHero("Chroma",new Hero(Creature.Element.AIR,20,52,Hero.Rarity.RARE,39,new StatAura(null,0,4,Creature.Element.AIR)));
+        addHero("Petry",new Hero(Creature.Element.EARTH,44,26,Hero.Rarity.RARE,40,new StatAura(null,0,4,Creature.Element.EARTH)));
+        addHero("Zaytus",new Hero(Creature.Element.FIRE,22,58,Hero.Rarity.RARE,41,new StatAura(null,0,4,Creature.Element.FIRE)));
+        addHero("Lady Odelith",new Hero(Creature.Element.WATER,36,36,Hero.Rarity.RARE,54,new StatAura(null,0,4,Creature.Element.WATER)));
+        addHero("Shygu",new Hero(Creature.Element.AIR,54,34,Hero.Rarity.LEGENDARY,55,new ScaleableStatAura(null,0,1,Creature.Element.AIR,9)));
+        addHero("Thert",new Hero(Creature.Element.EARTH,28,72,Hero.Rarity.LEGENDARY,56,new ScaleableStatAura(null,0,1,Creature.Element.EARTH,9)));
+        addHero("Lord Kirk",new Hero(Creature.Element.FIRE,64,32,Hero.Rarity.LEGENDARY,57,new ScaleableStatAura(null,0,1,Creature.Element.FIRE,9)));
+        addHero("Neptunius",new Hero(Creature.Element.WATER,70,30,Hero.Rarity.LEGENDARY,58,new ScaleableStatAura(null,0,1,Creature.Element.WATER,9)));
+        addHero("Hosokawa",new Hero(Creature.Element.AIR,50,42,Hero.Rarity.LEGENDARY,88,new ScaleableStatAura(null,1,0,Creature.Element.AIR,9)));
+        addHero("Takeda",new Hero(Creature.Element.EARTH,66,32,Hero.Rarity.LEGENDARY,89,new ScaleableStatAura(null,1,0,Creature.Element.EARTH,9)));
+        addHero("Hirate",new Hero(Creature.Element.FIRE,56,38,Hero.Rarity.LEGENDARY,90,new ScaleableStatAura(null,1,0,Creature.Element.FIRE,9)));
+        addHero("Hattori",new Hero(Creature.Element.WATER,48,44,Hero.Rarity.LEGENDARY,91,new ScaleableStatAura(null,1,0,Creature.Element.WATER,9)));
         addHero("Mahatma",new Hero(Creature.Element.AIR,26,78,Hero.Rarity.LEGENDARY,114,new ElementDamageBoost(null,0.75)));
         addHero("Jade",new Hero(Creature.Element.EARTH,30,76,Hero.Rarity.LEGENDARY,115,new ElementDamageBoost(null,0.75)));
         addHero("Edana",new Hero(Creature.Element.FIRE,36,72,Hero.Rarity.LEGENDARY,116,new ElementDamageBoost(null,0.75)));
         addHero("Dybbuk",new Hero(Creature.Element.WATER,30,80,Hero.Rarity.LEGENDARY,117,new ElementDamageBoost(null,0.75)));
-        addHero("Ascended Shygu",new Hero(Creature.Element.AIR,135,85,Hero.Rarity.ASCENDED,118,new ScaleableStatBoost(null,0,1,Creature.Element.AIR,5.5)));
-        addHero("Ascended Thert",new Hero(Creature.Element.EARTH,70,180,Hero.Rarity.ASCENDED,119,new ScaleableStatBoost(null,0,1,Creature.Element.EARTH,5.5)));
-        addHero("Ascended Lord Kirk",new Hero(Creature.Element.FIRE,160,80,Hero.Rarity.ASCENDED,120,new ScaleableStatBoost(null,0,1,Creature.Element.FIRE,5.5)));
-        addHero("Ascended Neptunius",new Hero(Creature.Element.WATER,175,75,Hero.Rarity.ASCENDED,121,new ScaleableStatBoost(null,0,1,Creature.Element.WATER,5.5)));
-        addHero("Ascended Hosokawa",new Hero(Creature.Element.AIR,124,106,Hero.Rarity.ASCENDED,122,new ScaleableStatBoost(null,1,0,Creature.Element.AIR,5.5)));
-        addHero("Ascended Takeda",new Hero(Creature.Element.EARTH,164,82,Hero.Rarity.ASCENDED,123,new ScaleableStatBoost(null,1,0,Creature.Element.EARTH,5.5)));
-        addHero("Ascended Hirate",new Hero(Creature.Element.FIRE,144,96,Hero.Rarity.ASCENDED,124,new ScaleableStatBoost(null,1,0,Creature.Element.FIRE,5.5)));
-        addHero("Ascended Hattori",new Hero(Creature.Element.WATER,126,114,Hero.Rarity.ASCENDED,125,new ScaleableStatBoost(null,1,0,Creature.Element.WATER,5.5)));
+        addHero("Ascended Shygu",new Hero(Creature.Element.AIR,135,85,Hero.Rarity.ASCENDED,118,new ScaleableStatAura(null,0,1,Creature.Element.AIR,5.5)));
+        addHero("Ascended Thert",new Hero(Creature.Element.EARTH,70,180,Hero.Rarity.ASCENDED,119,new ScaleableStatAura(null,0,1,Creature.Element.EARTH,5.5)));
+        addHero("Ascended Lord Kirk",new Hero(Creature.Element.FIRE,160,80,Hero.Rarity.ASCENDED,120,new ScaleableStatAura(null,0,1,Creature.Element.FIRE,5.5)));
+        addHero("Ascended Neptunius",new Hero(Creature.Element.WATER,175,75,Hero.Rarity.ASCENDED,121,new ScaleableStatAura(null,0,1,Creature.Element.WATER,5.5)));
+        addHero("Ascended Hosokawa",new Hero(Creature.Element.AIR,124,106,Hero.Rarity.ASCENDED,122,new ScaleableStatAura(null,1,0,Creature.Element.AIR,5.5)));
+        addHero("Ascended Takeda",new Hero(Creature.Element.EARTH,164,82,Hero.Rarity.ASCENDED,123,new ScaleableStatAura(null,1,0,Creature.Element.EARTH,5.5)));
+        addHero("Ascended Hirate",new Hero(Creature.Element.FIRE,144,96,Hero.Rarity.ASCENDED,124,new ScaleableStatAura(null,1,0,Creature.Element.FIRE,5.5)));
+        addHero("Ascended Hattori",new Hero(Creature.Element.WATER,126,114,Hero.Rarity.ASCENDED,125,new ScaleableStatAura(null,1,0,Creature.Element.WATER,5.5)));
         
         //season heroes
-        addHero("Veildur",new Hero(Creature.Element.EARTH,44,66,Hero.Rarity.LEGENDARY,33,new StatBoost(null,3,3,null)));
-        addHero("Brynhildr",new Hero(Creature.Element.AIR,48,72,Hero.Rarity.LEGENDARY,34,new StatBoost(null,4,4,null)));
-        addHero("Groth",new Hero(Creature.Element.FIRE,52,78,Hero.Rarity.LEGENDARY,35,new StatBoost(null,5,5,null)));
-        addHero("Zeth",new Hero(Creature.Element.WATER,42,70,Hero.Rarity.LEGENDARY,48,new Revenge(null,0.1)));
-        addHero("Koth",new Hero(Creature.Element.EARTH,46,76,Hero.Rarity.LEGENDARY,49,new Revenge(null,0.15)));
-        addHero("Gurth",new Hero(Creature.Element.AIR,50,82,Hero.Rarity.LEGENDARY,50,new Revenge(null,0.2)));
+        addHero("Veildur",new Hero(Creature.Element.EARTH,44,66,Hero.Rarity.LEGENDARY,33,new StatAura(null,3,3,null)));
+        addHero("Brynhildr",new Hero(Creature.Element.AIR,48,72,Hero.Rarity.LEGENDARY,34,new StatAura(null,4,4,null)));
+        addHero("Groth",new Hero(Creature.Element.FIRE,52,78,Hero.Rarity.LEGENDARY,35,new StatAura(null,5,5,null)));
+        addHero("Zeth",new Hero(Creature.Element.WATER,42,70,Hero.Rarity.LEGENDARY,48,new WrathPercentAtt(null,0.1)));
+        addHero("Koth",new Hero(Creature.Element.EARTH,46,76,Hero.Rarity.LEGENDARY,49,new WrathPercentAtt(null,0.15)));
+        addHero("Gurth",new Hero(Creature.Element.AIR,50,82,Hero.Rarity.LEGENDARY,50,new WrathPercentAtt(null,0.2)));
         addHero("Sigrun",new Hero(Creature.Element.FIRE,12,65,Hero.Rarity.LEGENDARY,59,new Ricochet(null,0.5,5)));
         addHero("Koldis",new Hero(Creature.Element.WATER,14,70,Hero.Rarity.LEGENDARY,60,new Ricochet(null,0.5,5)));
         addHero("Alvitr",new Hero(Creature.Element.EARTH,16,75,Hero.Rarity.LEGENDARY,61,new Ricochet(null,0.5,5)));
@@ -538,31 +512,35 @@ public class CreatureFactory {
         
         //holiday heroes
         addHero("James",new Hero(Creature.Element.EARTH,12,50,Hero.Rarity.LEGENDARY,20,new Ricochet(null,0.75,5)));
-        addHero("Werewolf",new Hero(Creature.Element.EARTH,25,35,Hero.Rarity.COMMON,51,new ScaleableStatBoost(null,0,1,null,9)));
-        addHero("Jack'o Knight",new Hero(Creature.Element.AIR,35,55,Hero.Rarity.RARE,52,new ScaleableStatBoost(null,1,0,null,9)));
-        addHero("Dullahan",new Hero(Creature.Element.FIRE,45,75,Hero.Rarity.LEGENDARY,53,new ScaleableStatBoost(null,1,1,null,9)));
+        addHero("Werewolf",new Hero(Creature.Element.EARTH,25,35,Hero.Rarity.COMMON,51,new ScaleableStatAura(null,0,1,null,9)));
+        addHero("Jack'o Knight",new Hero(Creature.Element.AIR,35,55,Hero.Rarity.RARE,52,new ScaleableStatAura(null,1,0,null,9)));
+        addHero("Dullahan",new Hero(Creature.Element.FIRE,45,75,Hero.Rarity.LEGENDARY,53,new ScaleableStatAura(null,1,1,null,9)));
+        addHero("Billy",new Hero(Creature.Element.EARTH,40,30,Hero.Rarity.COMMON,127,new Wrath(null,100)));
+        addHero("Sanqueen",new Hero(Creature.Element.WATER,22,88,Hero.Rarity.RARE,128,new Vampyrism(null,0.8)));
+        addHero("Cliodhna",new Hero(Creature.Element.AIR,60,150,Hero.Rarity.LEGENDARY,129,new Revenge(null,1)));
         addHero("Christmas Elf",new Hero(Creature.Element.WATER,24,38,Hero.Rarity.COMMON,73,new ScaleableHeal(null,1,9)));
         addHero("Reindeer",new Hero(Creature.Element.AIR,36,54,Hero.Rarity.RARE,74,new ScaleableAOE(null,1,9)));
         addHero("Santa Claus",new Hero(Creature.Element.FIRE,48,72,Hero.Rarity.LEGENDARY,75,new ScaleableLifeSteal(null,1,9)));
         addHero("Sexy Santa",new Hero(Creature.Element.EARTH,44,44,Hero.Rarity.RARE,76,new Ricochet(null,0.66,5)));
-        addHero("Leprechaun", new Hero(Creature.Element.EARTH,25,75,Hero.Rarity.LEGENDARY,96,new OutnumberedPercentDamage(null)));
+        addHero("Leprechaun", new Hero(Creature.Element.EARTH,25,75,Hero.Rarity.LEGENDARY,96,new EvenField(null)));
         addHero("Sparks",new Hero(Creature.Element.FIRE,30,30,Hero.Rarity.COMMON,97,new StatLevelBoost(null,2)));
         addHero("Leaf",new Hero(Creature.Element.EARTH,42,48,Hero.Rarity.RARE,98,new StatLevelBoost(null,2)));
         addHero("Flynn",new Hero(Creature.Element.AIR,48,70,Hero.Rarity.LEGENDARY,99,new StatLevelBoost(null,2)));
         
         //other heroes
-        addHero("Lady of Twilight",new Hero(Creature.Element.AIR,20,45,Hero.Rarity.COMMON,0,new StatBoost(null,3,3,null)));
+        addHero("Lady of Twilight",new Hero(Creature.Element.AIR,20,45,Hero.Rarity.COMMON,0,new StatAura(null,3,3,null)));
         addHero("Tiny",new Hero(Creature.Element.EARTH,30,70,Hero.Rarity.RARE,1,new ScaleableLifeSteal(null,1,24)));
-        addHero("Nebra",new Hero(Creature.Element.FIRE,40,110,Hero.Rarity.LEGENDARY,2,new StatBoost(null,20,0,null)));
+        addHero("Nebra",new Hero(Creature.Element.FIRE,40,110,Hero.Rarity.LEGENDARY,2,new StatAura(null,20,0,null)));
         addHero("Bubbles",new Hero(Creature.Element.WATER,110,300,Hero.Rarity.ASCENDED,80,new ScaleableAntiAOE(null,0.005)));
         addHero("Dr Hawking", new Hero(Creature.Element.AIR,60,66,Hero.Rarity.LEGENDARY,101,new ScaleableStartingDamage(null,1,1)));
         addHero("Neil", new Hero(Creature.Element.WATER,15,150,Hero.Rarity.LEGENDARY,113,new Intercept(null,0.3)));
+        addHero("Guy", new Hero(Creature.Element.FIRE,64,340,Hero.Rarity.ASCENDED,130,new TargetedReflect(null,1)));
         addHero("Dicemaster", new Hero(Creature.Element.WATER,26,25,Hero.Rarity.COMMON,107,new RandomStatBoost(null,20)));
         addHero("Luxurius Maximus", new Hero(Creature.Element.FIRE,60,28,Hero.Rarity.RARE,108,new RandomTarget(null)));
         addHero("Pokerface", new Hero(Creature.Element.EARTH,70,70,Hero.Rarity.LEGENDARY,109,new CriticalHit(null,3)));
         
         //developer heroes
-        addHero("Spyke",new Hero(Creature.Element.AIR,45,75,Hero.Rarity.LEGENDARY,42,new AddAttack(null,10)));
+        addHero("Spyke",new Hero(Creature.Element.AIR,45,75,Hero.Rarity.LEGENDARY,42,new Train(null,10)));
         addHero("Aoyuki",new Hero(Creature.Element.WATER,55,70,Hero.Rarity.LEGENDARY,43,new Rainbow(null,100,4)));
         addHero("GaiaByte",new Hero(Creature.Element.EARTH,150,75,Hero.Rarity.LEGENDARY,44,new Wither(null,2)));
         
@@ -575,8 +553,8 @@ public class CreatureFactory {
         
         addWorldBoss("Lord of Chaos",new WorldBoss(Creature.Element.FIRE,73,72,new AOE(null,20)));
         addWorldBoss("Mother of all Kodamas",new WorldBoss(Creature.Element.EARTH,125,87,new AntiAOE(null,0.5)));
-        addWorldBoss("Kryton",new WorldBoss(Creature.Element.AIR,11,106,new AddAttack(null,10)));
-        addWorldBoss("Doyenne",new WorldBoss(Creature.Element.WATER,110,126,new DamageOverflow(null,5000)));
+        addWorldBoss("Kryton",new WorldBoss(Creature.Element.AIR,11,106,new Train(null,10)));
+        addWorldBoss("Doyenne",new WorldBoss(Creature.Element.WATER,110,126,new DamageDodge(null,5000)));
     }
     
     private void addMonster(String name, int elementNum, int tier, Monster monster){
@@ -680,7 +658,8 @@ public class CreatureFactory {
                 name.equals("Ascended Hosokawa") || 
                 name.equals("Ascended Takeda") || 
                 name.equals("Ascended Hirate") || 
-                name.equals("Ascended Hattori")){
+                name.equals("Ascended Hattori") ||
+                name.equals("Ascended Defile")){
             return true;
         }
         else{

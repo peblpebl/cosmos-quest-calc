@@ -48,6 +48,8 @@ public class Hero extends Creature implements Levelable{
         hero.levelUp(level);
         hero.currentAtt = currentAtt;//for sandbox
         hero.currentHP = currentHP;
+        hero.baseHP = baseHP;
+        hero.baseAtt = baseAtt;
         
         hero.ID = ID;
         

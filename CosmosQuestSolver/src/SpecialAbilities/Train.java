@@ -8,11 +8,11 @@ import Formations.Formation;
 import cosmosquestsolver.OtherThings;
 
 //increases attack by a specified amount every turn. Used by Spyke, Boor, Putrid, and Kryton
-public class AddAttack extends SpecialAbility{
+public class Train extends SpecialAbility{
     
     private long amount;
 
-    public AddAttack(Creature owner, long amount) {
+    public Train(Creature owner, long amount) {
         super(owner);
         this.amount = amount;
     }
@@ -27,7 +27,7 @@ public class AddAttack extends SpecialAbility{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new AddAttack(newOwner,amount);
+        return new Train(newOwner,amount);
     }
     
     

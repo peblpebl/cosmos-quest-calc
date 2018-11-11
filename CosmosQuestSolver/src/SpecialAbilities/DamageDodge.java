@@ -8,11 +8,11 @@ import Formations.Formation;
 
 //Nullifies damage above a given amount.
 //used by Doyenne
-public class DamageOverflow extends SpecialAbility{
+public class DamageDodge extends SpecialAbility{
     
     private long damageCap;
 
-    public DamageOverflow(Creature owner, long damageCap) {
+    public DamageDodge(Creature owner, long damageCap) {
         super(owner);
         this.damageCap = damageCap;
     }
@@ -21,7 +21,7 @@ public class DamageOverflow extends SpecialAbility{
     
     @Override
     public SpecialAbility getCopyForNewOwner(Creature newOwner) {
-        return new DamageOverflow(newOwner,damageCap);
+        return new DamageDodge(newOwner,damageCap);
     }
     
     @Override

@@ -108,7 +108,7 @@ public class TournamentOptimizer extends AISolver{//if (leprechaun) delete monst
         
         for (Hero h : heroes){
             if (h.getName().equals("Leprechaun")){
-                containsLep = true;
+                containsLep = true;//what if lep is too low to put in?
             }
         }
         

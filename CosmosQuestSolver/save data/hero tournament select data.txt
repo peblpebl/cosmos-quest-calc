@@ -38,7 +38,7 @@ Taint,true,false
 Putrid,true,false
 Defile,true,false
 Ascended Alpha,false,false
-Ascended Athos,false,false
+Ascended Athos,true,false
 Ascended Rei,false,false
 Ascended Auri,false,false
 Ascended TR0N1X,true,false
@@ -49,6 +49,7 @@ Ascended Atzar,false,false
 Ascended Rigr,true,false
 Ascended Dagda,false,false
 Ascended Bavah,false,false
+Ascended Defile,false,false
 Valor,true,false
 Rokka,true,false
 Pyromancer,true,false
@@ -76,8 +77,8 @@ Dybbuk,true,false
 Ascended Shygu,true,false
 Ascended Thert,true,false
 Ascended Lord Kirk,true,false
-Ascended Neptunius,false,false
-Ascended Hosokawa,false,false
+Ascended Neptunius,true,false
+Ascended Hosokawa,true,false
 Ascended Takeda,false,false
 Ascended Hirate,false,false
 Ascended Hattori,false,false
@@ -101,6 +102,9 @@ James,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
 Dullahan,false,false
+Billy,true,false
+Sanqueen,false,false
+Cliodhna,false,false
 Christmas Elf,true,false
 Reindeer,true,false
 Santa Claus,true,false
@@ -113,8 +117,9 @@ Lady of Twilight,false,false
 Tiny,false,false
 Nebra,false,false
 Bubbles,false,false
-Dr Hawking,false,false
+Dr Hawking,true,false
 Neil,true,true
+Guy,false,false
 Dicemaster,true,false
 Luxurius Maximus,false,false
 Pokerface,true,false

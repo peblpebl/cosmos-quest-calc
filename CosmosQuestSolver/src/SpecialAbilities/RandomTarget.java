@@ -47,7 +47,7 @@ public class RandomTarget extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        return "Deals damage to a random unit";
+        return "Attacks a random unit";
     }
     
     @Override

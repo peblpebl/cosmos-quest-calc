@@ -42,7 +42,7 @@ public class RandomStatBoost extends SpecialAbility{//*activates before leprecha
     
     @Override
     public String getDescription() {
-        return "Increment stats +0-" + maxBoost;
+        return "Increace Att/HP by +0-" + maxBoost + " at start";
     }
     
     @Override
