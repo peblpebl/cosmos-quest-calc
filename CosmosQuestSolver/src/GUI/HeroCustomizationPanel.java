@@ -109,7 +109,7 @@ public class HeroCustomizationPanel extends JPanel implements ActionListener, Do
         try{
             int level = Integer.parseInt(levelTextField.getText());
             
-            if ((level <= 0 || level > 99) && !(level == 1000)){
+            if (!Hero.validHeroLevel(level)){
                 throw new Exception();
             }
             

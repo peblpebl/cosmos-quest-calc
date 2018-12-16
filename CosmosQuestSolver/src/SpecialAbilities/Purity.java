@@ -4,6 +4,7 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
 
 //multiplies the damage done to a creature by a specified amount if the creature
@@ -21,7 +22,7 @@ public class Purity extends SpecialAbility{
     @Override
     public double extraDamage(Formation thisFormation, Formation enemyFormation) {
         if (enemyFormation.getFrontCreature().getElement() == owner.getElement()){
-            return owner.getBaseAtt() * (multiplier - 1);
+            return (owner.getBaseAtt()+owner.getAttBoost()) * (multiplier - 1);
         }
         else{
             return 0;
@@ -51,8 +52,13 @@ public class Purity extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
+    }
+    
+    @Override
     public int viability() {//normal viability, using average damage increace if fighting a creature of a random element
-        return owner.getBaseHP() * owner.getBaseAtt() * (int)(1 + (multiplier-1)/Creature.Element.values().length);
+        return owner.getBaseHP() * owner.getBaseAtt() * (int)(1 + (multiplier-1)/Elements.numElements());
     }
     
 }

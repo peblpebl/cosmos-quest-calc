@@ -5,16 +5,27 @@ package GUI;
 
 import Formations.BattleLog;
 import Formations.BattleState;
+import Formations.CreatureFactory;
 import Formations.Formation;
 import cosmosquestsolver.OtherThings;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 
 public class SimulationPanel extends JPanel implements ActionListener{
@@ -35,6 +46,7 @@ public class SimulationPanel extends JPanel implements ActionListener{
     private JLabel roundLabel;
     private SolutionFormationPanel leftFormationPanel;
     private SolutionFormationPanel rightFormationPanel;
+    private JLabel infoLabel;
     
     
     private JButton firstButton;
@@ -42,6 +54,7 @@ public class SimulationPanel extends JPanel implements ActionListener{
     private JButton previousButton;
     private JButton nextButton;
     protected JButton menuButton;
+    protected JButton getBattleCodeButton;
     
     protected BattleLog log;
     private int roundNum;
@@ -69,18 +82,22 @@ public class SimulationPanel extends JPanel implements ActionListener{
         previousButton = new JButton("<");
         nextButton = new JButton(">");
         menuButton = new JButton("Menu");
+        getBattleCodeButton = new JButton("Get battle code");
+        infoLabel = new JLabel("");
         
         firstButton.addActionListener(this);
         lastButton.addActionListener(this);
         previousButton.addActionListener(this);
         nextButton.addActionListener(this);
         menuButton.addActionListener(this);
+        getBattleCodeButton.addActionListener(this);
         
         firstButton.setActionCommand("first");
         lastButton.setActionCommand("last");
         previousButton.setActionCommand("previous");
         nextButton.setActionCommand("next");
         menuButton.setActionCommand("menu");
+        getBattleCodeButton.setActionCommand("getCode");
         
         
         leftDamageLabelPanel.add(leftDamageTitleLabel);
@@ -96,15 +113,19 @@ public class SimulationPanel extends JPanel implements ActionListener{
         battlePanel.add(rightFormationPanel);
         battlePanel.add(rightDamageLabelPanel);
         
+        buttonPanel.add(new JLabel("                           "));//hack to get some space between the menu button and the others
         buttonPanel.add(firstButton);
         buttonPanel.add(previousButton);
-        buttonPanel.add(menuButton);
+        
+        buttonPanel.add(getBattleCodeButton);
         buttonPanel.add(nextButton);
         buttonPanel.add(lastButton);
+        buttonPanel.add(new JLabel("                           "));//hack to get some space between the menu button and the others
+        buttonPanel.add(menuButton);
         
         add(battlePanel);
         add(buttonPanel);
-        
+        add(infoLabel);
         
         setPreferredSize(new Dimension(QuestSolverFrame.QUEST_SOLVER_FRAME_WIDTH,150));
         setMinimumSize(new Dimension(QuestSolverFrame.QUEST_SOLVER_FRAME_WIDTH,150));
@@ -147,6 +168,9 @@ public class SimulationPanel extends JPanel implements ActionListener{
     public void recieveSimulation(BattleLog log){
         this.log = log;
         changeRound(log.length()-1);
+        infoLabel.setText("");
+        revalidate();
+        repaint();
     }
     
     protected void changeRound(int round){
@@ -189,6 +213,19 @@ public class SimulationPanel extends JPanel implements ActionListener{
             case "menu":
                 exit();
             break;
+            case "getCode":
+                try {
+                    //showCode(log.getBattleCode());
+                    copyToClipboard(log.getBattleCode());
+                    infoLabel.setText("Copied to Clipboard");
+                } 
+                catch (UnsupportedEncodingException ex) {
+                    infoLabel.setText("Error: missing decoder");
+                }           
+                revalidate();
+                repaint();
+            
+            break;
             default:
                 System.out.println("Error: unknown action command in SimulationPanel");
         }
@@ -202,5 +239,45 @@ public class SimulationPanel extends JPanel implements ActionListener{
         frame.setVisible(false);
         frame.dispose();
     }
+    
+    private void showCode(String code) {
+        JDialog dialog = new JDialog((JFrame)frame, "Battle Code", true);//getId?
+        dialog.setLocationRelativeTo(null);
+        
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(CreatureFactory.getPicture("Backgrounds/CQ Background"), 0, 0, dialog.getWidth(), dialog.getHeight(), null);
+            }
+        };
+        backgroundPanel.setLayout(new BoxLayout(backgroundPanel,BoxLayout.Y_AXIS));
+        backgroundPanel.add(new JLabel ("Instructions"));
+        JTextArea codeTextArea = new JTextArea(code);
+        //codeTextArea.setColumns(50);
+        codeTextArea.setMaximumSize(new Dimension(300,300));
+        codeTextArea.setEditable(false);
+        codeTextArea.setLineWrap(true);
+        codeTextArea.setWrapStyleWord(true);
+        backgroundPanel.add(codeTextArea);
+        backgroundPanel.setMinimumSize(new Dimension(300,400));
+        dialog.setMaximumSize(new Dimension(300,400));
+        dialog.setMinimumSize(new Dimension(300,400));
+        
+        dialog.getContentPane().add(backgroundPanel);
+        //centerScreen(dialog);
+        
+        dialog.pack();
+        dialog.setVisible(true);
+        
+    }
+    
+    
+    public static void copyToClipboard(String s){
+        StringSelection stringSelection = new StringSelection(s);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }
+
     
 }

@@ -5,6 +5,7 @@ package GUI;
 
 import Formations.Creature;
 import Formations.CreatureFactory;
+import Formations.Elements.Element;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -49,10 +50,10 @@ public class MonsterSelectionPanel extends JPanel implements ActionListener, Doc
         this.frame = frame;
         this.enemyFormationMakerPanel = enemyFormationMakerPanel;
         
-        airMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Creature.Element.AIR,facingRight);
-        waterMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Creature.Element.WATER,facingRight);
-        earthMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Creature.Element.EARTH,facingRight);
-        fireMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Creature.Element.FIRE,facingRight);
+        airMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Element.AIR,facingRight);
+        waterMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Element.WATER,facingRight);
+        earthMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Element.EARTH,facingRight);
+        fireMonsterSelectionPanel = new ElementMonsterSelectionPanel(frame,enemyFormationMakerPanel,Element.FIRE,facingRight);
         
         airMonsterSelectionScrollPane = new JScrollPane(airMonsterSelectionPanel);
         waterMonsterSelectionScrollPane = new JScrollPane(waterMonsterSelectionPanel);

@@ -376,9 +376,11 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             creatureFollowersFile.close();
             heroLevelsFile.close();
             heroSelectFile.close();
+            frame.recieveMessageString("Saved!");
+            
         }
         catch(Exception e){
-            System.out.println("failed to save");
+            frame.recieveMessageString("Failed to save!");
         }
         
         
@@ -407,9 +409,15 @@ public class AssetPanel extends JPanel implements ActionListener, DocumentListen
             followersCreaturesScanner.close();
             heroLevelsScanner.close();
             heroSelectScanner.close();
+            if (frame != null){
+                frame.recieveMessageString("Loaded from save file");
+            }
         }
         catch(Exception e){
             e.printStackTrace();
+            if (frame != null){
+                frame.recieveMessageString("Failed to Load");
+            }
         }
 
     }

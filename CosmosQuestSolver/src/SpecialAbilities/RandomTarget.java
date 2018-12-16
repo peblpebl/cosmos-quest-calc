@@ -11,6 +11,7 @@ import Formations.Formation;
 public class RandomTarget extends SpecialAbility{
 
     private int turn = 0;
+    private long seed = -1;
     
     public RandomTarget(Creature owner) {
         super(owner);
@@ -25,7 +26,8 @@ public class RandomTarget extends SpecialAbility{
     
     @Override
     public void prepareForFight(Formation thisFormation, Formation enemyFormation) {
-        enemyFormation.getTurnSeed(enemyFormation, turn);//gets formation to generate seed at the beginning of the fight. seed might change if called mid-fight
+        //enemyFormation.getTurnSeed(enemyFormation, turn);//gets formation to generate seed at the beginning of the fight. seed might change if called mid-fight
+        seed = Formation.getTurnSeed(0,turn);
     }
     
     @Override
@@ -37,7 +39,8 @@ public class RandomTarget extends SpecialAbility{
     //does element advantage apply to target or front monster? I think front monster
     @Override
     public void attack(Formation thisFormation, Formation enemyFormation) {//attacks a "random" enemy
-        int position = (int)(thisFormation.getTurnSeed(enemyFormation, turn) % enemyFormation.size());
+        //int position = (int)(Formation.getTurnSeed(seed,turn+1) % enemyFormation.size());
+        int position = (int)(enemyFormation.getTurnSeed(turn) % enemyFormation.size());
         if (position < 0 || position >= enemyFormation.size()){
             System.out.println("out of bounds!");
         }
@@ -48,6 +51,11 @@ public class RandomTarget extends SpecialAbility{
     @Override
     public String getDescription() {
         return "Attacks a random unit";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName();
     }
     
     @Override

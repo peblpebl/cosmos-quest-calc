@@ -1,0 +1,10 @@
+id 66
+rarity Ascended
+Earth
+baseAtt 60
+baseHP 162
+skill ScaleableStatAura 0 1 All 3.3
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill ScaleableStatAura 0 1 All 3.3

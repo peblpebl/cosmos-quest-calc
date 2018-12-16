@@ -4,19 +4,21 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
 import Formations.Levelable;
+import Formations.Elements.Element;
 
 //Increases the attack and armor of all creatures
 //of a specified element (everyone if element is null) (including the owner)
 //while creature is alive. Increases lineraly as level increaces. Used by
-//Halloween heroes, quest heroes 13-20, Ascended Athos, Ascended Rei, and
+//Halloween heroes, quest heroes 13-20 and 25-32, Ascended Athos, Ascended Rei, and
 //Ascended Bavah
 public class ScaleableStatAura extends StatAura{
         
     private double levelMilestone;
     
-    public ScaleableStatAura(Creature owner, int attBoost, int armorBoost, Creature.Element element, double levelMilestone) {//if elsment is null, apply to all creatures
+    public ScaleableStatAura(Creature owner, int attBoost, int armorBoost, Element element, double levelMilestone) {//if elsment is null, apply to all creatures
         super(owner,attBoost,armorBoost,element);
         this.levelMilestone = levelMilestone;
     }
@@ -111,6 +113,11 @@ public class ScaleableStatAura extends StatAura{
         else{//no boost
             return "";
         }
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + attBoost + " " + armorBoost + " " + Elements.getString(element) + " " + levelMilestone;
     }
     
     @Override

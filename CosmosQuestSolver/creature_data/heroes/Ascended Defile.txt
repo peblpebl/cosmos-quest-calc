@@ -1,0 +1,10 @@
+id 131
+rarity Ascended
+Fire
+baseAtt 114
+baseHP 126
+skill BloodBomb 150
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill BloodBomb 150

@@ -12,6 +12,7 @@ import Formations.Formation;
 import Formations.Hero;
 import Formations.Levelable;
 import Formations.Monster;
+import cosmosquestsolver.OtherThings;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -273,6 +274,7 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     @Override
     public void recieveSolution(Formation f){
         solutionFormationPanel.updateFormation(f);
+        
         if (!f.isEmpty()){//called by calculationPanel to clear solution. not really a solution
             calculationPanel.recieveSolutionFound();
             calculationPanel.updateSolutionDetails(f, enemyFormationMakerPanel.getEnemyFormation());
@@ -305,6 +307,10 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     public Hero[] getPrioritizedHeroes() {
         return assetPanel.getPrioritizedHeroes();
     }
+    
+    public Formation getSolution() {
+        return solutionFormationPanel.getFormation();
+    }
 
     public Formation getEnemyFormation() {
         return enemyFormationMakerPanel.getEnemyFormation();
@@ -336,7 +342,14 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
 
     @Override
     public String getSolutionMessage() {
-        return "Solution found";
+        Formation solution = solutionFormationPanel.getFormation();
+        if (solution.getFollowers() == 0){
+            return "Solution found";
+        }
+        else{
+            return "Solution found. Followers used: " + OtherThings.intToCommaString(solution.getFollowers());
+        }
+        
     }
 
     @Override
@@ -406,6 +419,13 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     public void recieveProgressString(String text) {
         calculationPanel.recieveProgressString(text);
     }
+    
+    @Override
+    public void recieveMessageString(String text) {
+        if (calculationPanel != null){
+            calculationPanel.setMessageString(text);
+        }
+    }
 
     @Override
     public void recieveCreatureList(LinkedList<Creature> list) {
@@ -430,6 +450,8 @@ public class QuestSolverFrame extends JFrame implements ISolverFrame, EnemySelec
     public String getSelectSource() {
         return "save data/hero quest select data.txt";
     }
+
+    
 
     
 

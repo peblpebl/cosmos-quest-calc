@@ -32,6 +32,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/BattleLog.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/ScaleableStartingDamage.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/WorldBossOptimizer.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Execute.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Rainbow.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyFormationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/MonsterBuff.java</file>
@@ -40,6 +41,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/BloodBomb.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Nothing.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/QuestSolverFrame.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/CombinationIterator.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/cosmosquestsolver/OtherThings.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/TournamentGridGenerator.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemyHeroCustomizationPanel.java</file>
@@ -50,6 +52,7 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/SimulationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Vampyrism.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/CriticalHit.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/AI/PermutationIterator.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/TargetedReflect.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Berserk.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/StatAura.java</file>
@@ -82,12 +85,14 @@
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/ElementSelectorPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/HeroCustomizationPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Intercept.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/Elements.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/CreatureDrawerLayer.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Reflect.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/SimulationOneTimePanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/WorldBossSelectionPanel.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/GUI/EnemySelectFrame.java</file>
             <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/Formations/WorldBoss.java</file>
+            <file>file:/C:/Users/Nathan/Documents/GitHub/cosmos-quest-calc/CosmosQuestSolver/src/SpecialAbilities/Wither.java</file>
         </group>
     </open-files>
 </project-private>

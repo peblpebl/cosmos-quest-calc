@@ -1,5 +1,5 @@
-M,E,30
-M,F,30
 M,A,30
-H,Boor,1000
-H,Geum,1000
+H,Nimue,1000
+H,Petry,1000
+H,Aural,1000
+H,Geron,1000

@@ -15,7 +15,7 @@ T4URUS,false,false
 TR0N1X,false,false
 Aquortis,false,false
 Aeris,false,false
-Geum,false,false
+Geum,true,false
 Rudean,false,false
 Aural,false,false
 Geror,false,false
@@ -33,7 +33,7 @@ Ganah,false,false
 Dagda,false,false
 Bylar,false,false
 Boor,false,false
-Bavah,true,false
+Bavah,false,false
 Taint,false,false
 Putrid,false,false
 Defile,false,false
@@ -62,10 +62,10 @@ Chroma,false,false
 Petry,true,false
 Zaytus,false,false
 Lady Odelith,false,false
-Shygu,false,false
+Shygu,true,false
 Thert,true,false
 Lord Kirk,false,false
-Neptunius,false,false
+Neptunius,true,false
 Hosokawa,false,false
 Takeda,false,false
 Hirate,false,false
@@ -74,15 +74,15 @@ Mahatma,false,false
 Jade,false,false
 Edana,false,false
 Dybbuk,false,false
-Ascended Shygu,false,false
+Ascended Shygu,true,false
 Ascended Thert,true,false
 Ascended Lord Kirk,false,false
-Ascended Neptunius,false,false
+Ascended Neptunius,true,false
 Ascended Hosokawa,false,false
 Ascended Takeda,false,false
 Ascended Hirate,false,false
 Ascended Hattori,false,false
-Veildur,true,false
+Veildur,false,false
 Brynhildr,false,false
 Groth,false,false
 Zeth,false,false
@@ -98,7 +98,10 @@ Kumu san,false,false
 Liu Cheng,false,false
 Hidoka,false,false
 Master Lee,false,false
-James,false,false
+Buccaneer Beatrice,false,false
+Corsair Charles,false,false
+Marauder Magnus,false,false
+Raider Rose,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
 Dullahan,false,false
@@ -117,6 +120,7 @@ Lady of Twilight,false,false
 Tiny,false,false
 Nebra,false,false
 Bubbles,false,false
+James,false,false
 Dr Hawking,false,false
 Neil,true,false
 Guy,false,false

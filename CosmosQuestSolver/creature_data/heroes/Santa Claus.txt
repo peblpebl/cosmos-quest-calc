@@ -1,0 +1,10 @@
+id 75
+rarity Legendary
+Fire
+baseAtt 48
+baseHP 72
+skill ScaleableLifeSteal 1 9.0
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill ScaleableLifeSteal 1 9.0

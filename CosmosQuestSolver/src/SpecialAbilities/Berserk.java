@@ -52,6 +52,11 @@ public class Berserk extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
+    }
+    
+    @Override
     public int viability() {
         //int highest = owner.getBaseHP() > owner.getBaseAtt() ? owner.getBaseHP() : owner.getBaseAtt();
         return owner.getBaseHP() * owner.getBaseAtt() * (int)Math.pow(multiplier,2);

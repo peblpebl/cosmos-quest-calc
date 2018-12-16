@@ -3,6 +3,7 @@
  */
 package AI;
 
+import Formations.Elements;
 import Formations.Creature;
 import Formations.CreatureFactory;
 import Formations.Formation;
@@ -144,11 +145,11 @@ public class WorldBossOptimizer extends AISolver{
     @Override
     protected int strengthViability(Creature c){
         int baseViability = super.strengthViability(c);
-        if (Creature.elementWeakness(bossFormation.getFrontCreature().getElement()) == c.getElement()){
-            baseViability  = (int)(baseViability * (double)Creature.ELEMENT_DAMAGE_BOOST * 20);
+        if (Elements.elementDamageMultiplier(c,bossFormation.getFrontCreature().getElement()) > 1){
+            baseViability  = (int)(baseViability * (double)Elements.DAMAGE_BOOST * 20);
         }
-        if (Creature.elementWeakness(c.getElement()) == bossFormation.getFrontCreature().getElement()){
-            baseViability  = (int)(baseViability * (double)Creature.ELEMENT_DAMAGE_BOOST / 3);
+        if (Elements.elementDamageMultiplier(bossFormation.getFrontCreature(),c.getElement()) > 1){
+            baseViability  = (int)(baseViability * (double)Elements.DAMAGE_BOOST / 3);
         }
         return baseViability;
     }
@@ -156,11 +157,11 @@ public class WorldBossOptimizer extends AISolver{
     @Override
     protected int followerMinderViability(Creature c, long averageFollowers){
         int baseViability = super.followerMinderViability(c, averageFollowers);
-        if (Creature.elementWeakness(bossFormation.getFrontCreature().getElement()) == c.getElement()){
-            baseViability  = (int)(baseViability * (double)Creature.ELEMENT_DAMAGE_BOOST * 20);//buff strong followers instead?
+        if (Elements.elementDamageMultiplier(c,bossFormation.getFrontCreature().getElement()) > 1){
+            baseViability  = (int)(baseViability * (double)Elements.DAMAGE_BOOST * 20);//buff strong followers instead?
         }
-        if (Creature.elementWeakness(c.getElement()) == bossFormation.getFrontCreature().getElement()){
-            baseViability  = (int)(baseViability * (double)Creature.ELEMENT_DAMAGE_BOOST / 3);
+        if (Elements.elementDamageMultiplier(bossFormation.getFrontCreature(),c.getElement()) > 1){
+            baseViability  = (int)(baseViability * (double)Elements.DAMAGE_BOOST / 3);
         }
         return baseViability;
     }

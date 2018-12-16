@@ -3,13 +3,10 @@
  */
 package Formations;
 
-import GUI.AssetPanel;
+import Formations.Elements.Element;
 import GUI.CreatureDrawer;
 import SpecialAbilities.Nothing;
-import SpecialAbilities.SpecialAbility;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 
 public class Monster extends Creature {
@@ -55,7 +52,7 @@ public class Monster extends Creature {
             case FIRE: elementNum = 2;break;
             case WATER: elementNum = 3;break;
         }
-        return (tier-1) * Element.values().length + elementNum;
+        return (tier-1) * Elements.MONSTER_ELEMENTS.length + elementNum;
     }
     
     @Override

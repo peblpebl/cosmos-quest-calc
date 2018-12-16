@@ -100,7 +100,7 @@ public class EnemyHeroCustomizationPanel extends JPanel implements DocumentListe
         try{
             int level = Integer.parseInt(levelTextField.getText());
             
-            if ((level <= 0 || level > 99) && !(level == 1000)){
+            if (!Hero.validHeroLevel(level)){
                 throw new Exception();
             }
             
@@ -122,6 +122,10 @@ public class EnemyHeroCustomizationPanel extends JPanel implements DocumentListe
     public void setLevel(int level) {
         levelTextField.setText(Integer.toString(level));
         levelHero();
+    }
+
+    public Hero getHero() {
+        return hero;
     }
     
     

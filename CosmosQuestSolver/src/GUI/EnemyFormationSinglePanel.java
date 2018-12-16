@@ -4,15 +4,12 @@
 package GUI;
 
 import Formations.Creature;
-import AI.QuestSolver;
-import java.awt.Color;
+import Formations.Monster;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 //displays creature and lets you change it
 public class EnemyFormationSinglePanel extends JPanel implements MouseListener{
@@ -62,13 +59,17 @@ public class EnemyFormationSinglePanel extends JPanel implements MouseListener{
             //System.out.println("hi");
             frame.setMouseCreature(getCreature());
         }
-        else{
+        else{//pick up creature
             if (frame.getMouseCreature() == null){
                 frame.setMouseCreature(getCreature());
                 setCreature(null);
             }
-            else{
-                setCreature(frame.getMouseCreature());
+            else{//drop off creature
+                Creature c = frame.getMouseCreature();
+                if (!(c instanceof Monster) && enemyFormationPanel.containsCreature(c.getName())){
+                    enemyFormationPanel.removeCreature(c.getName());
+                }
+                setCreature(c);
                 frame.setMouseCreature(null);
             }
         }

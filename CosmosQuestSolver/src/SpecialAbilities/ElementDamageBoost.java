@@ -4,7 +4,7 @@
 package SpecialAbilities;
 
 import Formations.Creature;
-import Formations.Formation;
+import Formations.Elements;
 
 //attacks a random enemy each turn (only one hit, enemy in first is not guarenteed to get hit)
 //used by Quest heroes 21-24
@@ -29,8 +29,16 @@ public class ElementDamageBoost extends SpecialAbility{
     
     @Override
     public String getDescription() {
-        String percent = Integer.toString((int)(percentBoost * 100));
-        return "Elemental bouns +" + percent + "%";
+        double elementalDamage = percentBoost + Elements.DAMAGE_BOOST;
+        if (elementalDamage % 1 == 0){
+            return "x " + ((int)elementalDamage) + " damage to elemental strength";
+        }
+        return "x " + (elementalDamage) + " damage to elemental strength";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + percentBoost;
     }
     
     public double getElementDamageBoost() {

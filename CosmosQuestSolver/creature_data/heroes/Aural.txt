@@ -1,0 +1,10 @@
+id 31
+rarity Rare
+Water
+baseAtt 50
+baseHP 18
+skill Berserk 1.2
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill Berserk 1.2

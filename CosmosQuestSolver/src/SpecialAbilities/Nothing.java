@@ -27,6 +27,11 @@ public class Nothing extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName();
+    }
+    
+    @Override
     public int viability() {
         return owner.getBaseHP() * owner.getBaseAtt();
     }

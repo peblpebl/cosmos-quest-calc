@@ -86,5 +86,13 @@ public class EnemyHeroesCustomizationPanel extends JPanel{
             panel.setLevel(level);
         }
     }
+
+    public void setHeroLevel(String name, int level) {
+        map.get(name).setLevel(level);
+    }
+
+    public Hero getHero(String name) {
+        return map.get(name).getHero();
+    }
     
 }

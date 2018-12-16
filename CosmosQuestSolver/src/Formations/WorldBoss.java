@@ -3,6 +3,7 @@
  */
 package Formations;
 
+import Formations.Elements.Element;
 import GUI.AssetPanel;
 import SpecialAbilities.SpecialAbility;
 import java.awt.Graphics;

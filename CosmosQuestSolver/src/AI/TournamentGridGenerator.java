@@ -4,8 +4,9 @@
 package AI;
 
 import Formations.Creature;
-import Formations.Creature.Element;
+import Formations.Elements.Element;
 import Formations.CreatureFactory;
+import Formations.Elements;
 import Formations.Formation;
 import Formations.Hero;
 import Formations.Monster;
@@ -120,7 +121,7 @@ public class TournamentGridGenerator {
         LinkedList<Monster> monsterList = CreatureFactory.getAvailableMonsters(followersAvailable/spotsToFill);//make a field to draw from?*
         
         if (monsterList.isEmpty()){//too few follows to fill the grid even with lowest tier monsters
-            for (Element e : Creature.Element.values()){
+            for (Element e : Elements.MONSTER_ELEMENTS){
                 monsterList.add(CreatureFactory.getMonster(e,1));//generate lowest tier monsters
             }
         }
@@ -158,7 +159,7 @@ public class TournamentGridGenerator {
     
     private static int getRandomMonsterIndex(int num){
         //if monster pool is small, return random number
-        int cutoffPoint = 2*Creature.Element.values().length + 1;
+        int cutoffPoint = 2*Elements.MONSTER_ELEMENTS.length + 1;
         if (num <= cutoffPoint){
             return (int)(Math.random()*num);
         }
@@ -534,7 +535,7 @@ public class TournamentGridGenerator {
         }
         LinkedList<Monster> monsters = extractMonsters(listFromGrid(copy));
         //testList(monsters);
-        monsters = upgradeMonsters(monsters,totalFollowers,0);
+        monsters = upgradeMonsters(monsters,totalFollowers,0);//does this change the mosnters or the copy?******
         //testList(monsters);
         //System.out.println("*****************************************");
         return copy;

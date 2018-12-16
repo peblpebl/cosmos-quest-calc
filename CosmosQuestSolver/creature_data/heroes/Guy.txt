@@ -1,0 +1,10 @@
+id 130
+rarity Ascended
+Fire
+baseAtt 64
+baseHP 340
+skill TargetedReflect 1.0
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill TargetedReflect 1.0

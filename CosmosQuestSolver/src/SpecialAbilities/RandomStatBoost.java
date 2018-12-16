@@ -26,10 +26,11 @@ public class RandomStatBoost extends SpecialAbility{//*activates before leprecha
         return new RandomStatBoost(newOwner,maxBoost);
     }
     
+    
+    
     @Override
     public void prepareForFight(Formation thisFormation, Formation enemyFormation) {//adjusts stats
-
-        long boost = enemyFormation.getSeed() % (maxBoost+1);
+        long boost = enemyFormation.getTurnSeed(0) % (maxBoost+1);
         //System.out.println(enemyFormation.getSeed() + " " + boost);
         owner.setBaseAtt((int)(owner.getBaseAtt()+boost));
         owner.setBaseHP((int)(owner.getBaseHP()+boost));
@@ -43,6 +44,11 @@ public class RandomStatBoost extends SpecialAbility{//*activates before leprecha
     @Override
     public String getDescription() {
         return "Increace Att/HP by +0-" + maxBoost + " at start";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + maxBoost;
     }
     
     @Override

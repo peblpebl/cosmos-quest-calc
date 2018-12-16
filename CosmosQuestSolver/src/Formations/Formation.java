@@ -27,7 +27,7 @@ public class Formation implements Iterable<Creature>{
     //in rare circumstances, armor might outweigh attack power, resulting in an
     //infinite loop. After a set amount of rounds, end the battle
     public static final int STALEMATE_CUTOFF_POINT = 100;
-    private long seed = -1;//used for random skills. newSeed should be positive. if newSeed is needed, generate it
+    //private long seed = -1;//used for random skills. newSeed should be positive. if newSeed is needed, generate it
     
     private static final boolean DEBUG = false;//prints info when fighting
 
@@ -48,6 +48,58 @@ public class Formation implements Iterable<Creature>{
             }
         }
         return false;
+    }
+
+    //{"setup":[-103,-67,-102,-122,-71,-120],"shero":{"120":88,"118":99,"101":99,"100":99,"69":99,"65":99},"player":[-28,119,117,117,118],"phero":{"26":1000}}
+    public String idStr() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        
+        for (int i = members.size()-1; i >= 0; i--){
+            sb.append(members.get(i).getID());
+            if (i != 0){
+                sb.append(",");
+            }
+        }
+        
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public String heroLevelStr() {
+        List<Creature> sortedHeroList = getSortedHeroList();
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        
+        //set up hash map string for hero levels. The game still has legacy code
+        //for world bosses that allows them to be leveled, but those levels don't matter
+        for (int i = sortedHeroList.size()-1; i >= 0; i--){
+            if (sortedHeroList.get(i) instanceof Hero){
+                Hero h = (Hero) sortedHeroList.get(i);
+                sb.append("\"").append(sortedHeroList.get(i).getRawID()).append("\":").append(h.getLevel());
+            }
+            else if (sortedHeroList.get(i) instanceof WorldBoss){
+                sb.append("\"").append(sortedHeroList.get(i).getRawID()).append("\":1");
+            }
+            
+            if (i != 0){
+                sb.append(",");
+            }
+        }
+        
+        sb.append("}");
+        return sb.toString();
+    }
+    
+    private LinkedList<Creature> getSortedHeroList(){
+        LinkedList<Creature> list= new LinkedList<>();
+        for(Creature c: members){
+            if (c instanceof Hero || c instanceof WorldBoss){
+                list.add(c);
+            }
+        }
+        Collections.sort(list, (Creature c1, Creature c2) -> c2.getRawID()-c1.getRawID());
+        return list;
     }
 
     
@@ -84,22 +136,25 @@ public class Formation implements Iterable<Creature>{
         return members;
     }
     
+    /*
     public long getSeed() {
         if (seed == -1){//lazy evaluation
             seed = generateSeed();
         }
         return seed;
     }
+    */
     
-    private long generateSeed(){
+    public long getSeed(){//recalculates every time
         long newSeed = 1;
         
-        for (int i = members.size()-1; i >= 0; i--){
-            newSeed = newSeed * Math.abs(members.get(i).getID()) + 1;
+        for (int i = size()-1; i >= 0; i--){
+            newSeed = (newSeed * Math.abs((int)(members.get(i).getID())) +1) % Integer.MAX_VALUE;
         }
-        
+        //newSeed = (16807 * newSeed) % Integer.MAX_VALUE;
         //empty slots (id=abs(-1))
-        newSeed += (MAX_MEMBERS - size());
+        newSeed += (MAX_MEMBERS - size());// battle code replays don't seem to do this step
+        //System.out.println(newSeed);
         
         return newSeed;
     }
@@ -125,9 +180,18 @@ public class Formation implements Iterable<Creature>{
     */
     
     //gets a pseudo-random number that skills with random componens each turn can use
-    public long getTurnSeed(Formation otherFormation, int turnNumber){
-        long ans = (otherFormation.getSeed() + (long)Math.pow(101-turnNumber,3)) % ((long)Math.round((double)otherFormation.getSeed()/(101 - turnNumber) + (101 - turnNumber)*(101 - turnNumber)));
-        return Math.abs(ans);
+    public long getTurnSeed(int turn){
+        return getTurnSeed(getSeed(),turn);
+        //long enemySeed = otherFormation.getSeed();
+        //long ans = (enemySeed + (long)Math.pow(101-turnNumber,3)) % ((long)Math.round((double)enemySeed/(101 - turnNumber) + (101 - turnNumber)*(101 - turnNumber)));
+        //return Math.abs(ans);
+    }
+    
+    public static long getTurnSeed(long seed,int turn){
+        for (int i = 0; i < turn; ++i){
+                seed = (16807 * seed) % Integer.MAX_VALUE;
+        }
+        return seed;
     }
     
     public void addDamageTaken(long hit) {
@@ -138,6 +202,9 @@ public class Formation implements Iterable<Creature>{
         return totalDamageTaken;
     }
     
+    public void setDamageTaken(long damage) {
+        totalDamageTaken = damage;
+    }
     
     public void attack(Formation enemyFormation){
         members.getFirst().attack(this,enemyFormation);//only the first creature damages foes directly
@@ -228,7 +295,13 @@ public class Formation implements Iterable<Creature>{
         return list;
     }
 
-    
+    public long getFollowers() {
+        long sum = 0;
+        for (Creature c : members){
+            sum += c.getFollowers();
+        }
+        return sum;
+    }
     
     //returns the game's definition of a formation's strength
     //the sum of each creature's strength
@@ -281,27 +354,38 @@ public class Formation implements Iterable<Creature>{
     
     // at the end of each round, delete dead creatures
     // the creatures behind, if any, will take their place at the front
-    public void handleCreatureDeaths(Formation enemyFormation){
+    public boolean handleCreatureDeaths(Formation enemyFormation){//iterator efficiency?
+        boolean killedSomething = false;
         Iterator<Creature> iterator = members.iterator();
         while (iterator.hasNext()) {
             Creature c = iterator.next();
             if (c.isDead()) {
                 c.actionOnDeath(this,enemyFormation);
                 iterator.remove();
+                killedSomething = true;
             }
         }
-        /*
-        for (Creature creature : members){
-            if (creature.isDead()){
-                creature.actionOnDeath(this,enemyFormation);
-            }
-        }
+        return killedSomething;
         
-        while(getFrontCreature()!= null && getFrontCreature().isDead()){
-            
-            members.removeFirst();
+    }
+    
+    private static void handleDeaths(Formation thisFormation, Formation enemyFormation){
+        boolean leftDead = false;
+        boolean rightDead = false;
+        do{
+            leftDead = thisFormation.handleCreatureDeaths(enemyFormation);
+            rightDead = enemyFormation.handleCreatureDeaths(thisFormation);
         }
-*/
+        while(leftDead || rightDead);
+    }
+    
+    public boolean hasDeadUnits(){
+        for (Creature c : members){
+            if (c.isDead()){
+                return true;
+            }
+        }
+        return false;
     }
     
     public void takeHit(Creature attacker, Formation enemyFormation) {
@@ -442,8 +526,9 @@ public class Formation implements Iterable<Creature>{
     public static void battle(Formation thisFormation, Formation enemyFormation){
         doBattlePrep(thisFormation,enemyFormation);
         
-        thisFormation.handleCreatureDeaths(enemyFormation);
-        enemyFormation.handleCreatureDeaths(thisFormation);
+        handleDeaths(thisFormation,enemyFormation);
+        //thisFormation.handleCreatureDeaths(enemyFormation);
+        //enemyFormation.handleCreatureDeaths(thisFormation);
         
         int roundNumber = 0;
         
@@ -465,8 +550,9 @@ public class Formation implements Iterable<Creature>{
         LinkedList<BattleState> states = new LinkedList<>();
         
         Formation.doBattlePrep(thisFormation,enemyFormation);
-        thisFormation.handleCreatureDeaths(enemyFormation);
-        enemyFormation.handleCreatureDeaths(thisFormation);
+        handleDeaths(thisFormation,enemyFormation);
+        //thisFormation.handleCreatureDeaths(enemyFormation);
+        //enemyFormation.handleCreatureDeaths(thisFormation);
         
         int roundNumber = 0;
         states.add(new BattleState(thisFormation.getCopy(),enemyFormation.getCopy(),roundNumber));
@@ -501,8 +587,10 @@ public class Formation implements Iterable<Creature>{
         thisFormation.postRoundAction2(enemyFormation);//for healing
         enemyFormation.postRoundAction2(thisFormation);
         
-        thisFormation.handleCreatureDeaths(enemyFormation);
-        enemyFormation.handleCreatureDeaths(thisFormation);
+        
+        handleDeaths(thisFormation,enemyFormation);
+        //thisFormation.handleCreatureDeaths(enemyFormation);
+        //enemyFormation.handleCreatureDeaths(thisFormation);
     }
     
     

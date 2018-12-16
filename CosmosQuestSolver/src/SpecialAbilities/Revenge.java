@@ -4,8 +4,8 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
-import cosmosquestsolver.OtherThings;
 
 //increaces attack by a percent of damage taken (before armor).
 //used by Cliodhna
@@ -27,7 +27,7 @@ public class Revenge extends SpecialAbility{//how does it work with Niel? Pokerf
     
     private double damageGained(Creature attacker){
         double damage = attacker.getCurrentAtt() + attacker.getAttBoost();// + specialAbility.extraDamage(enemyFormation,thisFormation);//change to currentAttack*** current att obsolete?
-        damage = attacker.damageFromElement(damage,owner.getElement());// - target.getArmor();
+        damage = Elements.damageFromElement(attacker,damage,owner.getElement());// - target.getArmor();
         
         if (damage < 0){
             damage = 0;
@@ -64,6 +64,11 @@ public class Revenge extends SpecialAbility{//how does it work with Niel? Pokerf
     public String getDescription() {
         String percent = Integer.toString((int)(this.percent * 100));
         return "Attack increaces by " + percent + "% of damage recieved";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + percent;
     }
     
     @Override

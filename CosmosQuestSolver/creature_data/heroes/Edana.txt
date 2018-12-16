@@ -1,0 +1,10 @@
+id 116
+rarity Legendary
+Fire
+baseAtt 36
+baseHP 72
+skill ElementDamageBoost 0.75
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill ElementDamageBoost 0.75

@@ -3,6 +3,7 @@
  */
 package Formations;
 
+import Formations.Elements.Element;
 import GUI.CreatureDrawer;
 import SpecialAbilities.SpecialAbility;
 import java.awt.Graphics;
@@ -15,6 +16,13 @@ public class Hero extends Creature implements Levelable{
 
     private Rarity rarity;
     private int level = 1;
+    
+    private int promoteLevel = 0;
+    private int promote1Att = 0;
+    private int promote2HP = 0;
+    private int promote4Stats = 0;
+    private SpecialAbility promote5Ability;
+    public static final int MAX_PROMOTE_LEVEL = 5;
     
     public static enum Rarity{COMMON,RARE,LEGENDARY,ASCENDED};
     
@@ -49,6 +57,7 @@ public class Hero extends Creature implements Levelable{
         hero.currentAtt = currentAtt;//for sandbox
         hero.currentHP = currentHP;
         hero.baseHP = baseHP;
+        hero.maxHP = maxHP;
         hero.baseAtt = baseAtt;
         
         hero.ID = ID;
@@ -62,14 +71,35 @@ public class Hero extends Creature implements Levelable{
     }
     
     
+    
+    
     @Override
     public void levelUp(int level) {
         this.level = level;
         this.baseHP = HPForLevel(level,rarity,lvl1Att,lvl1HP);
         this.baseAtt = attForLevel(level,rarity,lvl1Att,lvl1HP);
         currentHP = baseHP;//heroes will never level up mid-battle
+        maxHP = baseHP;
         currentAtt = baseAtt;
         
+    }
+    
+    public void promote(int level){
+        
+    }
+    
+    public int getPromoteLevel(){
+        return promoteLevel;
+    }
+    
+    @Override
+    public SpecialAbility getSpecialAbility(){
+        if (promoteLevel == MAX_PROMOTE_LEVEL){
+            return promote5Ability;
+        }
+        else{
+            return specialAbility;
+        }
     }
     
     //possible levels in the game currently

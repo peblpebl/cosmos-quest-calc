@@ -57,6 +57,11 @@ public class AntiAOE extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + percent;
+    }
+    
+    @Override
     public int viability() {
         return owner.getBaseHP() * owner.getBaseAtt();
     }

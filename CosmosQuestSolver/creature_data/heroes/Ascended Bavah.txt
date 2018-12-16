@@ -1,0 +1,10 @@
+id 100
+rarity Ascended
+Water
+baseAtt 122
+baseHP 122
+skill ScaleableStatAura 1 1 All 6.58
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill ScaleableStatAura 1 1 All 6.58

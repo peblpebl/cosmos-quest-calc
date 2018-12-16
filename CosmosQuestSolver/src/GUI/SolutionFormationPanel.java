@@ -3,9 +3,10 @@
  */
 package GUI;
 
-import AI.AISolver;
+import Formations.Creature;
 import Formations.Formation;
 import java.awt.Dimension;
+import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -48,6 +49,16 @@ public class SolutionFormationPanel extends JPanel{
         }
         revalidate();
         repaint();
+    }
+    
+    public Formation getFormation(){
+        LinkedList<Creature> list = new LinkedList<>();
+        for (int i = 0; i < Formation.MAX_MEMBERS; i++){
+            if (panels[i].getCreature() != null){
+                list.add(panels[i].getCreature());
+            }
+        }
+        return new Formation(list);
     }
     
     

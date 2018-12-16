@@ -5,11 +5,9 @@ package GUI;
 
 import Formations.Creature;
 import Formations.CreatureFactory;
+import Formations.Elements.Element;
 import Formations.Monster;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -18,11 +16,11 @@ public class ElementMonsterSelectionPanel extends JPanel{
     
     private EnemySelectFrame frame;
     private EnemyFormationMakerPanel enemyFormationMakerPanel;
-    private Creature.Element element;
+    private Element element;
     
     private Monster[] monsters;
 
-    public ElementMonsterSelectionPanel(EnemySelectFrame frame,EnemyFormationMakerPanel enemyFormationMakerPanel, Creature.Element element, boolean facingRight) {
+    public ElementMonsterSelectionPanel(EnemySelectFrame frame,EnemyFormationMakerPanel enemyFormationMakerPanel, Element element, boolean facingRight) {
         this.frame = frame;
         this.enemyFormationMakerPanel = enemyFormationMakerPanel;
         this.element = element;

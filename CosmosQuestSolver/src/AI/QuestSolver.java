@@ -142,9 +142,13 @@ public class QuestSolver extends AISolver{
         while(permutations.hasNext()){
             Formation currentFormation = new Formation(permutations.next());
             if (Formation.passed(currentFormation.getCopy(), enemyFormation.getCopy())){
-                frame.recieveSolution(currentFormation);
-                searching = false;
-                return;
+                if (!Formation.passed(frame.getSolution().getCopy(), enemyFormation.getCopy())){//if there is already a solution from another thread, don't bother.
+                    frame.recieveSolution(currentFormation);
+                    searching = false;
+                }
+                
+                return;//stops the solver from overwriting the solution so it is different than in the solution in the replay
+                
             }
             
         }

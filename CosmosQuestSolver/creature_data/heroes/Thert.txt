@@ -1,0 +1,10 @@
+id 56
+rarity Legendary
+Earth
+baseAtt 28
+baseHP 72
+skill ScaleableStatAura 0 1 Earth 9.0
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill ScaleableStatAura 0 1 Earth 9.0

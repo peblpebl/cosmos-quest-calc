@@ -167,6 +167,13 @@ public class WorldBossOptimizerFrame extends JFrame implements ISolverFrame{
     }
     
     @Override
+    public void recieveMessageString(String text) {
+        if (calculationPanel != null){
+            calculationPanel.setMessageString(text);
+        }
+    }
+    
+    @Override
     public void recieveCreatureList(LinkedList<Creature> list) {
         calculationPanel.recieveCreatureList(list);
     }

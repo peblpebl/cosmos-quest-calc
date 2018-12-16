@@ -1,0 +1,10 @@
+id 108
+rarity Rare
+Fire
+baseAtt 60
+baseHP 28
+skill RandomTarget
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill RandomTarget

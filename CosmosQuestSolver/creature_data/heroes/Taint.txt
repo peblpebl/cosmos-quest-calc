@@ -1,0 +1,10 @@
+id 110
+rarity Common
+Air
+baseAtt 25
+baseHP 25
+skill Ricochet 0.5 5
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill Ricochet 0.5 5

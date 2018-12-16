@@ -330,6 +330,13 @@ public class TournamentOptimizerFrame extends JFrame implements ISolverFrame, Do
     }
     
     @Override
+    public void recieveMessageString(String text) {
+        if (calculationPanel != null){
+            calculationPanel.setMessageString(text);
+        }
+    }
+    
+    @Override
     public void recieveCreatureList(LinkedList<Creature> list) {
         calculationPanel.recieveCreatureList(list);
     }

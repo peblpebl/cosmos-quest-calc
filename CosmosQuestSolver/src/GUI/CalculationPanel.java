@@ -118,6 +118,7 @@ public class CalculationPanel extends JPanel implements ActionListener{
                     entireListChatBox.clear();
                     solutionDetailsButton.setEnabled(false);
                     solver = frame.makeSolver();//resets solver
+                    messageLabel.setText("");
                     new Thread(solver).start();
                     
                     revalidate();
@@ -143,18 +144,19 @@ public class CalculationPanel extends JPanel implements ActionListener{
                 
                 if (!solver.isSearching()){
                     searchingLabel.setText("");
+                    if(resultStatus == -1){
+                        searchingLabel.setText(frame.getDoneMessage());
+                    }
+                    else if (resultStatus == 0){
+                        searchingLabel.setText("");
+                    }
+                    else{
+                        searchingLabel.setText(frame.getSolutionMessage());
+                    }
                 }
                 
                 
-                if(resultStatus == -1){
-                    messageLabel.setText(frame.getDoneMessage());
-                }
-                else if (resultStatus == 0){
-                    messageLabel.setText("");
-                }
-                else{
-                    messageLabel.setText(frame.getSolutionMessage());
-                }
+                
                 
                 
                 repaint();
@@ -186,7 +188,13 @@ public class CalculationPanel extends JPanel implements ActionListener{
 
     public void recieveProgressString(String text) {
         searchingLabel.setText(text);
+        
     }
+    
+    public void setMessageString(String text){
+        messageLabel.setText(text);
+    }
+    
     
     public void recieveCreatureList(LinkedList<Creature> list) {
         entireListChatBox.addText("Search Order");

@@ -38,15 +38,15 @@ Taint,99
 Putrid,99
 Defile,99
 Ascended Alpha,1
-Ascended Athos,15
+Ascended Athos,63
 Ascended Rei,1
 Ascended Auri,1
-Ascended TR0N1X,92
+Ascended TR0N1X,99
 Ascended Geum,99
 Ascended Geror,1
 Ascended Pontus,90
 Ascended Atzar,1
-Ascended Rigr,79
+Ascended Rigr,84
 Ascended Dagda,1
 Ascended Bavah,1
 Ascended Defile,1
@@ -74,10 +74,10 @@ Mahatma,99
 Jade,99
 Edana,1
 Dybbuk,1
-Ascended Shygu,56
+Ascended Shygu,74
 Ascended Thert,99
-Ascended Lord Kirk,1
-Ascended Neptunius,89
+Ascended Lord Kirk,69
+Ascended Neptunius,99
 Ascended Hosokawa,1
 Ascended Takeda,1
 Ascended Hirate,1
@@ -91,22 +91,25 @@ Gurth,1
 Sigrun,18
 Koldis,21
 Alvitr,23
-Arshen,12
+Arshen,99
 Rua,99
 Dorth,99
 Kumu san,1
 Liu Cheng,1
 Hidoka,1
 Master Lee,1
-James,1
+Buccaneer Beatrice,1
+Corsair Charles,1
+Marauder Magnus,1
+Raider Rose,1
 Werewolf,99
 Jack'o Knight,1
 Dullahan,1
 Billy,1
 Sanqueen,1
 Cliodhna,1
-Christmas Elf,27
-Reindeer,12
+Christmas Elf,54
+Reindeer,30
 Santa Claus,5
 Sexy Santa,99
 Leprechaun,1
@@ -117,7 +120,8 @@ Lady of Twilight,1
 Tiny,1
 Nebra,1
 Bubbles,1
-Dr Hawking,54
+James,1
+Dr Hawking,99
 Neil,99
 Guy,1
 Dicemaster,1

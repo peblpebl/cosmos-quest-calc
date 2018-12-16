@@ -98,7 +98,10 @@ Kumu san,false,false
 Liu Cheng,true,false
 Hidoka,false,false
 Master Lee,true,false
-James,false,false
+Buccaneer Beatrice,false,false
+Corsair Charles,false,false
+Marauder Magnus,true,false
+Raider Rose,false,false
 Werewolf,true,false
 Jack'o Knight,false,false
 Dullahan,false,false
@@ -117,9 +120,10 @@ Lady of Twilight,false,false
 Tiny,false,false
 Nebra,false,false
 Bubbles,false,false
+James,false,false
 Dr Hawking,true,false
 Neil,true,true
-Guy,false,false
+Guy,true,false
 Dicemaster,true,false
 Luxurius Maximus,false,false
 Pokerface,true,false

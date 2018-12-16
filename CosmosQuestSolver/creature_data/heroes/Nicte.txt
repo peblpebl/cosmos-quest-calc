@@ -1,0 +1,10 @@
+id 19
+rarity Rare
+Air
+baseAtt 32
+baseHP 22
+skill StatAura 4 0 Air
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill StatAura 4 0 Air

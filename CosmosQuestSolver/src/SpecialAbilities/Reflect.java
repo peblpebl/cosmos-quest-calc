@@ -27,13 +27,21 @@ public class Reflect extends SpecialAbility{
     @Override
     public void recordDamageTaken(long damage){//is this skill asymetric? (which side you're on matters)
         damageTakenThisRound = damage;
-        
     }
 
     @Override
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {
         if (thisFormation.getFrontCreature() == owner){//can only reflect direct damage while in front
-            enemyFormation.getFrontCreature().changeHP(-damageTakenThisRound*multiplier,enemyFormation);//elemental damage boost and defence not considered.
+            Creature target = enemyFormation.getFrontCreature();
+            if (target.isDead()){//if creature died from normal attack, reflect damage is saved for the next enemy
+                enemyFormation.handleCreatureDeaths(thisFormation);
+                if (enemyFormation.size() > 0){
+                    enemyFormation.getFrontCreature().changeHP(-damageTakenThisRound*multiplier,enemyFormation);//new front creature
+                }
+            }
+            else{
+                target.changeHP(-damageTakenThisRound*multiplier,enemyFormation);//elemental damage boost and defence not considered.
+            }
         }
     }
     
@@ -51,8 +59,13 @@ public class Reflect extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
+    }
+    
+    @Override
     public int viability() {
-        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+multiplier));
+        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+1.75*multiplier));
     }
     
 }

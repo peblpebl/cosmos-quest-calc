@@ -1,0 +1,10 @@
+id 92
+rarity Ascended
+Air
+baseAtt 107
+baseHP 135
+skill Purity 3.0
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill Purity 3.0

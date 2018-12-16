@@ -34,7 +34,7 @@ public class EvenField extends SpecialAbility{//enemies cannot heal back to full
         for (Creature creature : enemyFormation){
             double damageDelt = creature.getBaseHP() * percentDamage  * (1 - enemyFormation.getAOEResistance());
             creature.changeHP(-damageDelt,enemyFormation);//rounding?
-            creature.setBaseHP(creature.getCurrentHP());//units cannot heal past the new HP cap (visual: hp are white, not red)
+            creature.setMaxHP(creature.getCurrentHP());//units cannot heal past the new HP cap
         }
     }
 
@@ -43,6 +43,11 @@ public class EvenField extends SpecialAbility{//enemies cannot heal back to full
     @Override
     public String getDescription() {
         return "At start, cuts enemy hp by a percent if outnumbered";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName();
     }
     
     @Override

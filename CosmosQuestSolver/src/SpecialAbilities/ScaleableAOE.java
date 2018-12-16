@@ -55,6 +55,11 @@ public class ScaleableAOE extends AOE{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + damage + " " + levelMilestone;
+    }
+    
+    @Override
     public int viability() {
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;

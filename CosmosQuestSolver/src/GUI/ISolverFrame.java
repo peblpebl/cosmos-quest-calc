@@ -24,6 +24,7 @@ public interface ISolverFrame {
     void parametersChanged();
     void backToMenuAction();
     void recieveProgressString(String text);
+    void recieveMessageString(String text);
     void recieveCreatureList(LinkedList<Creature> list);
     String getSelectSource();
     

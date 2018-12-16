@@ -5,12 +5,11 @@ package GUI;
 
 import Formations.CreatureFactory;
 import Formations.Formation;
+import Formations.Hero;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BoxLayout;
@@ -47,7 +46,7 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
         titleLabel = new JLabel(title);
         enemyFormationAndButtonPanel = new JPanel();
         clearFormationButton = new JButton("Clear");
-        enemyFormationPanel = new EnemyFormationPanel(frame,this,facingRight,loadQuest);
+        enemyFormationPanel = new EnemyFormationPanel(frame,this,facingRight);
         monsterSelectionPanel = new MonsterSelectionPanel(frame,this,facingRight,includeQuests);
         enemyHeroesCustomizationPanel = new EnemyHeroesCustomizationPanel(frame,this,AssetPanel.HERO_SELECTION_COLUMNS,facingRight,includeBosses,loadHeroes);
         enemyHeroesCustomizationScrollPane = new JScrollPane(enemyHeroesCustomizationPanel);
@@ -83,11 +82,15 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
         clearFormationButton.setActionCommand("clear formation");
         setOpaque(false);
         enemyFormationAndButtonPanel.setOpaque(false);
+        if (loadQuest){
+            enemyFormationPanel.load();
+        }
         
     }
     
     public void setQuest(int questNum) {
         enemyFormationPanel.setFormation(CreatureFactory.loadFormation("quests/Quest " + Integer.toString(questNum),facingRight));
+        enemyFormationPanel.syncHeroes();
     }
 
     
@@ -138,6 +141,14 @@ public class EnemyFormationMakerPanel extends JPanel implements ActionListener, 
 
     public void setHeroLevels(int level) {
         enemyHeroesCustomizationPanel.setLevelAll(level);
+    }
+
+    public void setHeroLevel(String name, int level) {
+        enemyHeroesCustomizationPanel.setHeroLevel(name,level);
+    }
+
+    public Hero getHero(String name) {
+        return enemyHeroesCustomizationPanel.getHero(name);
     }
 
     

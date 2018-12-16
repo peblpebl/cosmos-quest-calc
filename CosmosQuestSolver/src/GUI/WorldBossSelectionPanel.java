@@ -31,6 +31,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
     private JPanel solutionTitlePanel;
     private JLabel solutionLabel;
     private JLabel damageLabel;
+    private JLabel followersLabel;
     private SolutionFormationPanel solutionFormationPanel;
     
     private HashMap<String,WorldBoss> map;
@@ -45,6 +46,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
         solutionTitlePanel = new JPanel();
         solutionLabel = new JLabel("Solution");
         damageLabel = new JLabel("Damage: 0");
+        followersLabel = new JLabel(" ");
         solutionFormationPanel = new SolutionFormationPanel(true);
         
         setBoss(CreatureFactory.getDefaultBoss());
@@ -52,6 +54,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
         titlePanel.add(worldBossLabel);
         solutionTitlePanel.add(solutionLabel);
         solutionTitlePanel.add(damageLabel);
+        solutionTitlePanel.add(followersLabel);
         add(titlePanel);
         add(worldBossPicturePanel);
         add(buttonPanel);
@@ -75,6 +78,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
         worldBossLabel.setFont(new Font("Courier", Font.PLAIN, 30));
         solutionLabel.setFont(new Font("Courier", Font.PLAIN, 22));
         damageLabel.setFont(new Font("Courier", Font.PLAIN, 20));
+        followersLabel.setFont(new Font("Courier", Font.PLAIN, 20));
         //worldBossLabel.setHorizontalAlignment(SwingConstants.CENTER);
         //solutionLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         titlePanel.setOpaque(false);
@@ -114,7 +118,14 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
     }
 
     void setDamage(long damage) {
+        long followersUsed = solutionFormationPanel.getFormation().getFollowers();
         damageLabel.setText("Damage: " + OtherThings.intToCommaString(damage));
+        if (followersUsed == 0){
+            followersLabel.setText(" ");
+        }
+        else{
+            followersLabel.setText("Followers Used: " + OtherThings.intToCommaString(followersUsed));
+        }
         revalidate();
         repaint();
     }
@@ -126,6 +137,7 @@ public class WorldBossSelectionPanel extends JPanel implements ActionListener{
     public void parametersChanged() {
         solutionFormationPanel.updateFormation(new Formation());
         damageLabel.setText("Damage: 0");
+        followersLabel.setText(" ");
     }
     
     private class WorldBossPicturePanel extends JPanel{

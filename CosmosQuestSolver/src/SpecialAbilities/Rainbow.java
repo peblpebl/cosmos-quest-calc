@@ -4,6 +4,7 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
 
 // increases attack by a specified amount if a specified number of unique elements
@@ -21,6 +22,14 @@ public class Rainbow extends SpecialAbility{
     }
     
     @Override
+    public void prepareForFight(Formation thisFormation, Formation enemyFormation) {
+        if (meetsRequirements(thisFormation)){
+            owner.setCurrentAtt(owner.getCurrentAtt() + damageBoost);
+        }
+    }
+    
+    /*
+    @Override
     public double extraDamage(Formation thisFormation, Formation enemyFormation) {
         if (meetsRequirements(thisFormation)){
             return damageBoost;
@@ -29,11 +38,11 @@ public class Rainbow extends SpecialAbility{
             return 0;
         }
     }
-
+    */
     
 
     private boolean meetsRequirements(Formation thisFormation) {
-        boolean[] elements = new boolean[Creature.Element.values().length];
+        boolean[] elements = new boolean[Elements.numElements()];
         
         boolean foundOwner = false;
         for (Creature creature : thisFormation){
@@ -66,6 +75,11 @@ public class Rainbow extends SpecialAbility{
     @Override
     public String getDescription() {
         return "+" + damageBoost + " attack when " + numTypesRequired + " elemental types alive";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + damageBoost + " " + numTypesRequired;
     }
     
     @Override

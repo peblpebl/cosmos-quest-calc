@@ -28,10 +28,10 @@ public class StatLevelBoost extends SpecialAbility{
     public void prepareForFight(Formation thisFormation, Formation enemyFormation) {//adjusts stats
         if (owner instanceof Levelable){
             int[] newStats = getNewStats((Levelable) owner);
-            owner.setBaseAtt(newStats[0]);
-            owner.setBaseHP(newStats[1]);
-            owner.setCurrentAtt(owner.getBaseAtt());
-            owner.setCurrentHP(owner.getBaseHP());
+            //owner.setBaseAtt(newStats[0]);
+            owner.setMaxHP(newStats[1]);
+            owner.setCurrentAtt(newStats[0]);
+            owner.setCurrentHP(owner.getMaxHP());
         }
     }
     
@@ -60,6 +60,11 @@ public class StatLevelBoost extends SpecialAbility{
         else{
             return "Stats gained per level x" + multString;
         }
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
     }
     
     @Override

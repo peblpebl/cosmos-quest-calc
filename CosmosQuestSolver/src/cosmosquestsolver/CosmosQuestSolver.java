@@ -5,11 +5,16 @@ package cosmosquestsolver;
 
 import Formations.Creature;
 import Formations.CreatureFactory;
+import Formations.Elements;
 import Formations.Formation;
-import Formations.TournamentGrid;
+import Formations.Hero;
 import GUI.MenuFrame;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // starts the program. Also has some test code for debugging
 public class CosmosQuestSolver {
@@ -25,9 +30,36 @@ public class CosmosQuestSolver {
     }
     
     public static void test(){
-        Formation thisFormation = getThisFormation();
-        Formation enemyFormation = getEnemyFormation();
-        System.out.println(Formation.wonInPvP(thisFormation, enemyFormation));
+        Hero[] heroes = CreatureFactory.getHeroes();
+        for (Hero h : heroes){
+            try {
+                FileWriter f = new FileWriter("creature_data/heroes/" + h.getName() + ".txt");
+                f.write("id " + h.getRawID() + "\n");
+                switch (h.getRarity()){
+                    case COMMON: f.write("rarity Common\n"); break;
+                    case RARE: f.write("rarity Rare\n"); break;
+                    case LEGENDARY: f.write("rarity Legendary\n"); break;
+                    case ASCENDED: f.write("rarity Ascended\n"); break;
+                    default:
+                }
+                
+                f.write(Elements.getString(h.getElement()) + "\n");
+                
+                
+                
+                f.write("baseAtt " + h.getBaseAtt() + "\n");
+                f.write("baseHP " + h.getBaseHP() + "\n");
+                f.write("skill " + h.getSpecialAbility().getParseString() + "\n");
+                f.write("tier1Att 0\n");
+                f.write("tier2HP 0\n");
+                f.write("tier4Stats 0\n");
+                f.write("tier5Skill " + h.getSpecialAbility().getParseString());
+                
+                f.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CosmosQuestSolver.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public static Formation getThisFormation(){
@@ -101,6 +133,7 @@ public class CosmosQuestSolver {
         System.out.println(f);
     }
 */
+    /*
     public static void testSameMonsters(){
         LinkedList<Creature> list1 = new LinkedList<>();
         LinkedList<Creature> list2 = new LinkedList<>();
@@ -175,6 +208,6 @@ public class CosmosQuestSolver {
         System.out.println(grid1.numWins(grid2));
         
     }
-    
+    */
     
 }

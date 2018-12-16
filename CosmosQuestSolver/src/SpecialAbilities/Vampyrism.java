@@ -53,8 +53,13 @@ public class Vampyrism extends SpecialAbility{ //rounding?
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + percent;
+    }
+    
+    @Override
     public int viability() {
-        return owner.getBaseHP() * owner.getBaseAtt() * 2;
+        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+percent));
     }
     
 }

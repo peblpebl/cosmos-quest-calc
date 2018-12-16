@@ -37,6 +37,11 @@ public class Wither extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + amount;
+    }
+    
+    @Override
     public int viability() {
         return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1.5/amount));
     }

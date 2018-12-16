@@ -28,27 +28,32 @@ public class Wrath extends SpecialAbility{
     }
     
     
-
-    public void takeHit(Creature attacker,  Formation thisFormation, Formation enemyFormation, double hit) {
-        super.takeHit(attacker, thisFormation, enemyFormation, hit);
-        if ( owner.isDead() && thisFormation.getFrontCreature() == owner){
-            active = true;
+    @Override
+    public void deathAction(Formation thisFormation, Formation enemyFormation) {
+        Creature target = findTarget(enemyFormation);
+        if (target != null){
+            target.changeHP(-damage,enemyFormation);
         }
     }
     
-    public void postRoundAction(Formation thisFormation, Formation enemyFormation){//have 2 post actions? AOE then heal
-        if (active){
-            activateAbility(enemyFormation);
-        }
-    }
     
-    private void activateAbility(Formation enemyFormation) {
-        enemyFormation.getFrontCreature().changeHP(-damage,enemyFormation);
+    private Creature findTarget(Formation enemyFormation){
+        for (Creature c : enemyFormation){
+            if (!c.isDead()){
+                return c;
+            }
+        }
+        return null;
     }
     
     @Override
     public String getDescription() {
         return "Deals " + damage + " damage after dying"; //amount?
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + damage;
     }
     
     @Override

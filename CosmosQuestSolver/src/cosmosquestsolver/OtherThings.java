@@ -3,7 +3,9 @@
  */
 package cosmosquestsolver;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
+import java.util.Base64;
 
 //miscelanius functions
 public class OtherThings {
@@ -35,5 +37,14 @@ public class OtherThings {
         return twoDecimalFormat.format(num);
     }
     
+    public static String encodeBase64(String str) throws UnsupportedEncodingException{//error handling?
+        byte[] bytes = str.getBytes("UTF-8");
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+    
+    public static String decodeBase64(String code){
+        byte[] decoded = Base64.getDecoder().decode(code);
+        return new String(decoded);
+    }
     
 }

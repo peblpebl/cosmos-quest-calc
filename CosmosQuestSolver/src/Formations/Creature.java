@@ -3,6 +3,7 @@
  */
 package Formations;
 
+import Formations.Elements.Element;
 import SpecialAbilities.SpecialAbility;
 import java.awt.Graphics;
 
@@ -12,6 +13,7 @@ public abstract class Creature implements Comparable<Creature>{
     
     protected Element element;
     protected int baseHP;//hp the creatue starts off with
+    protected int maxHP;//cannot heal more than this
     protected int baseAtt;//attack the creature starts off with
     protected int attBoost = 0;
     protected int armor = 0;
@@ -25,8 +27,10 @@ public abstract class Creature implements Comparable<Creature>{
     protected boolean performedDeathAction = false;//put in specialAbility?
 
     
-    public static enum Element {AIR,WATER,EARTH,FIRE}//should this and ELEMENT_DAMAGE_BOOST be in its own class?
-    public static final double ELEMENT_DAMAGE_BOOST = 1.5;
+
+    
+    //public static enum Elements {AIR,WATER,EARTH,FIRE}//should this and ELEMENT_DAMAGE_BOOST be in its own class?
+    //public static final double ELEMENT_DAMAGE_BOOST = 1.5;
     
     protected Creature(){
         //used for copying
@@ -35,6 +39,7 @@ public abstract class Creature implements Comparable<Creature>{
     protected Creature(Element element, int baseAtt, int baseHP){
         this.element = element;
         this.baseHP = baseHP;
+        this.maxHP = baseHP;
         this.currentHP = baseHP;
         this.baseAtt = baseAtt;
         this.currentAtt = baseAtt;
@@ -52,6 +57,10 @@ public abstract class Creature implements Comparable<Creature>{
     }
     
     public int getID(){
+        return ID;
+    }
+    
+    public int getRawID(){
         return ID;
     }
     
@@ -83,6 +92,10 @@ public abstract class Creature implements Comparable<Creature>{
         return baseHP;
     }
     
+    public int getMaxHP() {
+        return maxHP;
+    }
+    
     public int getCurrentHP() {
         return currentHP;
     }
@@ -107,6 +120,10 @@ public abstract class Creature implements Comparable<Creature>{
         baseHP = hp;
     }
     
+    public void setMaxHP(int hp){
+        maxHP = hp;
+    }
+    
     public void setCurrentAtt(long att) {
         currentAtt = att;
     }
@@ -129,17 +146,11 @@ public abstract class Creature implements Comparable<Creature>{
     }
     
     public char getElementChar(){
-        switch (element){
-            case AIR: return 'A';
-            case WATER: return 'W';
-            case EARTH: return 'E';
-            case FIRE: return 'F';
-            default: return 'A';
-        }
+        return Elements.getElementChar(element);
     }
     
     public void attack(Formation thisFormation,Formation enemyFormation){
-        specialAbility.attack(thisFormation,enemyFormation);
+        getSpecialAbility().attack(thisFormation,enemyFormation);
     }
     
     public boolean isDead(){
@@ -154,13 +165,13 @@ public abstract class Creature implements Comparable<Creature>{
     
     // a somewhat more accurate measurement of a creature's viability in battle
     public int viability(){
-        return specialAbility.viability();
+        return getSpecialAbility().viability();
     }
     
 
     
     
-    //actually changes HP directly
+    //actually changes HP directly. Positive numbers means healing
     public void changeHP(double damage, Formation thisFormation){
         if (currentHP == 0){
             return;//once dead, cannot be revived
@@ -179,8 +190,8 @@ public abstract class Creature implements Comparable<Creature>{
         if (currentHP < 0){
             currentHP = 0;
         }
-        if (currentHP > baseHP){
-            currentHP = baseHP;
+        if (currentHP > maxHP){
+            currentHP = maxHP;
         }
     }
     
@@ -190,8 +201,8 @@ public abstract class Creature implements Comparable<Creature>{
     }
     
     public double determineDamage(Creature target, Formation thisFormation, Formation enemyFormation){
-        double damage = currentAtt + attBoost + specialAbility.extraDamage(enemyFormation,thisFormation);//change to currentAttack*** current att obsolete?
-        damage = damageFromElement(damage,target.element) - target.getArmor();
+        double damage = currentAtt + attBoost + specialAbility.extraDamage(enemyFormation,thisFormation);
+        damage = Elements.damageFromElement(this,damage,target.element) - target.getArmor();
         
         if (damage < 0){
             damage = 0;
@@ -200,80 +211,47 @@ public abstract class Creature implements Comparable<Creature>{
     }
     
     public void prepareForFight(Formation thisFormation, Formation enemyFormation){
-        specialAbility.prepareForFight(thisFormation, enemyFormation);
+        getSpecialAbility().prepareForFight(thisFormation, enemyFormation);
     }
     
     public void startOfFightAction(Formation thisFormation, Formation enemyFormation) {
-        specialAbility.startOfFightAction(thisFormation, enemyFormation);
+        getSpecialAbility().startOfFightAction(thisFormation, enemyFormation);
     }
     
     public void startOfFightAction2(Formation thisFormation, Formation enemyFormation) {
-        specialAbility.startOfFightAction2(thisFormation, enemyFormation);
+        getSpecialAbility().startOfFightAction2(thisFormation, enemyFormation);
     }
     
     public void preRoundAction(Formation thisFormation, Formation enemyFormation) {//reseting buffs done elsewhere
-        specialAbility.preRoundAction(thisFormation,enemyFormation);
+        getSpecialAbility().preRoundAction(thisFormation,enemyFormation);
     }
     
     public void takeHit(Creature attacker,  Formation thisFormation, Formation enemyFormation, double hit) {//future special ability?
-        specialAbility.takeHit(attacker, thisFormation, enemyFormation, hit);
+        getSpecialAbility().takeHit(attacker, thisFormation, enemyFormation, hit);
+    }
+    
+    public void recordDamageTaken(long damage) {
+        getSpecialAbility().recordDamageTaken(damage);
     }
 
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {//AOE takes effect even when dead
-        specialAbility.postRoundAction(thisFormation,enemyFormation);
+        getSpecialAbility().postRoundAction(thisFormation,enemyFormation);
     }
     
     public void postRoundAction2(Formation thisFormation, Formation enemyFormation) {
-        specialAbility.postRoundAction2(thisFormation,enemyFormation);
+        getSpecialAbility().postRoundAction2(thisFormation,enemyFormation);
     }
     
     public void actionOnDeath(Formation thisFormation, Formation enemyFormation) {//is this needed? put in each specialAbility class?
         if (!performedDeathAction){
-            specialAbility.deathAction(thisFormation, enemyFormation);
+            getSpecialAbility().deathAction(thisFormation, enemyFormation);
             performedDeathAction = true;
         }
     }
     
-    public double damageFromElement(double baseDamage,Element elementAttacked){
-        if (elementWeakness(elementAttacked) == element){
-            return baseDamage * (ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost());
-        }
-        else{
-            return baseDamage;
-        }
-    }
-    /*
-    public static double damageFromElement(double baseDamage, Element elementAttacked, Element thisElement){
-        if (elementWeakness(elementAttacked) == thisElement){
-            return baseDamage * (ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost());
-        }
-        else{
-            return baseDamage;
-        }
-    }
-    */
     @Override
     public int compareTo(Creature c) {
         return c.getID() - getID();
-    }
-    
-    public static Element elementWeakness(Element e){
-        switch(e){
-            case AIR: return Element.EARTH;
-            case WATER: return Element.AIR;
-            case EARTH: return Element.FIRE;
-            case FIRE: return Element.WATER;
-            default: return null;
-        }
-    }
-    
-    public double elementDamageMultiplier(Element elementAttacked){
-        if (elementWeakness(elementAttacked) == element){
-            return ELEMENT_DAMAGE_BOOST + specialAbility.getElementDamageBoost();
-        }
-        else{
-            return 1;
-        }
     }
     
     public boolean isSameCreature(Creature c){

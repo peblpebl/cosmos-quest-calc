@@ -27,6 +27,7 @@ public class CreatureDrawer {
     public static final int STATS_STRING_Y = 89;
     public static final Font STATS_FONT = new Font("Courier", Font.BOLD, 10);
     public static final Font HIGH_STATS_FONT = new Font("Courier", Font.BOLD, 9);
+    public static final Font SUPER_STATS_FONT = new Font("Courier", Font.BOLD, 8);
     public static final Color NORMAL_STATS_COLOR = Color.WHITE;
     public static final Color BUFFED_STATS_COLOR = Color.GREEN;
     public static final Color NERFED_STATS_COLOR = Color.RED;
@@ -49,7 +50,7 @@ public class CreatureDrawer {
     }
     
     public static void drawAttackNumbers(Creature c, Graphics g){
-        int textCenterNum = 0;
+        int textCenterNum = 0;//horizontal centering for big numbers
         if (c.getCurrentAtt() < c.getBaseAtt()){
             g.setColor(NERFED_STATS_COLOR);
         }
@@ -60,12 +61,24 @@ public class CreatureDrawer {
             g.setColor(BUFFED_STATS_COLOR);
         }
         
-        if (c.getCurrentAtt() >= 1000){
+        if (c.getCurrentAtt() >= 10000){
+            g.setFont(SUPER_STATS_FONT);
+            textCenterNum = -2;
+        }
+        else if (c.getCurrentAtt() >= 1000){
             g.setFont(HIGH_STATS_FONT);
             textCenterNum = -1;
         }
+        else if (c.getCurrentAtt() >= 100){
+            g.setFont(STATS_FONT);
+        }
+        else if (c.getCurrentAtt() >= 10){
+            g.setFont(STATS_FONT);
+            textCenterNum = 2;
+        }
         else{
             g.setFont(STATS_FONT);
+            textCenterNum = 5;
         }
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
@@ -73,7 +86,7 @@ public class CreatureDrawer {
     }
     
     public static void drawHPNumbers(Creature c, Graphics g){
-        int textCenterNum = 0;//vertical centering for high numbers
+        int textCenterNum = 0;//horizontal centering for big numbers
         if (c.getCurrentHP() < c.getBaseHP()){
             g.setColor(NERFED_STATS_COLOR);
         }
@@ -84,12 +97,24 @@ public class CreatureDrawer {
             g.setColor(BUFFED_STATS_COLOR);
         }
         
-        if (c.getCurrentHP() >= 1000){
+        if (c.getCurrentHP() >= 10000){
+            g.setFont(SUPER_STATS_FONT);
+            textCenterNum = -2;
+        }
+        else if (c.getCurrentHP() >= 1000){
             g.setFont(HIGH_STATS_FONT);
             textCenterNum = -1;
         }
+        else if (c.getCurrentHP() >= 100){
+            g.setFont(STATS_FONT);
+        }
+        else if (c.getCurrentHP() >= 10){
+            g.setFont(STATS_FONT);
+            textCenterNum = 2;
+        }
         else{
             g.setFont(STATS_FONT);
+            textCenterNum = 5;
         }
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
@@ -200,6 +225,9 @@ public class CreatureDrawer {
         g.setFont(LEVEL_FONT);
         if (h.getLevel() == 1000){
             g.drawString("1k", LEVEL_STRING_X, STATS_STRING_Y - 3);
+        }
+        else if (h.getLevel() < 10){
+            g.drawString(Integer.toString(h.getLevel()), LEVEL_STRING_X + 2, STATS_STRING_Y - 3);
         }
         else{
             g.drawString(Integer.toString(h.getLevel()), LEVEL_STRING_X, STATS_STRING_Y - 3);

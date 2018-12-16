@@ -82,6 +82,11 @@ public class ScaleableAntiAOE extends AntiAOE{
         
     }
     
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + percent;
+    }
+    
     
     
     @Override

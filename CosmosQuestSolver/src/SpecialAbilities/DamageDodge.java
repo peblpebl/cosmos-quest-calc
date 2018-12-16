@@ -39,6 +39,10 @@ public class DamageDodge extends SpecialAbility{
     public String getDescription() {
         return "Ignores attacks over " + damageCap + " damage";
     }
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + damageCap;
+    }
     
     @Override
     public int viability() {

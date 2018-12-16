@@ -58,6 +58,11 @@ public class ScaleableHeal extends Heal{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + amount + " " + levelMilestone;
+    }
+    
+    @Override
     public int viability() {
         if (owner instanceof Levelable){
             Levelable levelable = (Levelable) owner;

@@ -1,0 +1,10 @@
+id 43
+rarity Legendary
+Water
+baseAtt 55
+baseHP 70
+skill Rainbow 100 4
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill Rainbow 100 4

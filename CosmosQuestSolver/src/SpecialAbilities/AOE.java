@@ -24,11 +24,6 @@ public class AOE extends SpecialAbility{
         deadOnStart = owner.isDead();
         //System.out.println(owner.getName() + " has " + owner.getCurrentHP());
     }
-
-    @Override
-    public double extraDamage(Formation thisFormation, Formation enemyFormation) {
-        return 0;
-    }
     
     @Override
     public void postRoundAction(Formation thisFormation, Formation enemyFormation) {
@@ -50,6 +45,11 @@ public class AOE extends SpecialAbility{
     @Override
     public int viability() {
         return (owner.getBaseHP() * owner.getBaseAtt()) + (owner.getBaseHP() * damage * Formation.MAX_MEMBERS);
+    }
+
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + damage;
     }
     
     

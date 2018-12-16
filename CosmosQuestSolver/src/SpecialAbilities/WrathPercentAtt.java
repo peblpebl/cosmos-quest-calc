@@ -28,13 +28,7 @@ public class WrathPercentAtt extends SpecialAbility{
     
 
     @Override
-    public void deathAction(Formation thisFormation, Formation enemyFormation) {//what if AOE killed him?***
-        if (thisFormation.getFrontCreature() == owner){
-            activateAbility(enemyFormation);
-        }
-    }
-    
-    private void activateAbility(Formation enemyFormation) {
+    public void deathAction(Formation thisFormation, Formation enemyFormation) {
         enemyFormation.takeAOEDamage(Math.round(owner.getBaseAtt() * multiplier));
     }
     
@@ -42,6 +36,11 @@ public class WrathPercentAtt extends SpecialAbility{
     public String getDescription() {
         String percent = Integer.toString((int)(multiplier * 100));
         return "Deals " + percent + "% attack as aoe after dying (" + Integer.toString((int)(Math.round(owner.getBaseAtt() * multiplier))) + ")"; //amount?
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
     }
     
     @Override

@@ -57,6 +57,8 @@ public abstract class SpecialAbility {
     public void recordDamageDealt(long damage){//needed?
         
     }
+    
+    //if needed, set, not add, damage taken as a local variable
     public void recordDamageTaken(long damage){
         
     }
@@ -84,6 +86,7 @@ public abstract class SpecialAbility {
     
     //currently not used because the tooltips blockes mouseListeners
     public abstract String getDescription();
+    public abstract String getParseString();
     
     //special abilities can sometimes drastically increace a hero's effectiveness
     //in combat. This method provides a heuristic measurement for that effectiveness.

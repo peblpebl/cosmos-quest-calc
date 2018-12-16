@@ -28,8 +28,8 @@ public class Intercept extends SpecialAbility{
     public double alterIncomingDamage(double hit, double initialHit, Formation thisFormation, Formation enemyFormation) {
         if (owner != thisFormation.getFrontCreature() && !owner.isDead()){
             double damageIntercepted = hit * interceptPercent;
-            owner.takeHit(owner, thisFormation, enemyFormation, damageIntercepted);
-            return hit - damageIntercepted;
+            owner.takeHit(owner, thisFormation, enemyFormation, Math.round(damageIntercepted));
+            return Math.round(hit - damageIntercepted);
         }
         else{
             return hit;
@@ -40,7 +40,12 @@ public class Intercept extends SpecialAbility{
     @Override
     public String getDescription() {
         String percent = Integer.toString((int)(interceptPercent * 100));
-        return "Absorbs " + percent + "% damage from first unit";
+        return "Absorbs " + percent + "% direct damage from first unit";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + interceptPercent;
     }
     
     @Override

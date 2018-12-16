@@ -25,7 +25,7 @@ public class TargetedReflect extends SpecialAbility{
     
 
     @Override
-    public void recordDamageTaken(long damage){//is this skill asymetric? (which side you're on matters)
+    public void recordDamageTaken(long damage){
         damageTakenThisRound = damage;
         
     }
@@ -48,7 +48,7 @@ public class TargetedReflect extends SpecialAbility{
         
         for (int i = 0; i < enemyFormation.size(); i++){
             Creature c = enemyFormation.getCreature(i);
-            long cHP = c.getCurrentHP();//currentHP, what if two units have the same HP?
+            long cHP = c.getCurrentHP();//currentHP,two units have the same HP- select first in line
             
             if (cHP > greatestHP){
                 greatestHP = cHP;
@@ -65,8 +65,13 @@ public class TargetedReflect extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
+    }
+    
+    @Override
     public int viability() {
-        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1.5+multiplier)) ;
+        return (int)(owner.getBaseHP() * owner.getBaseAtt() * (1+4*multiplier)) ;
     }
     
 }

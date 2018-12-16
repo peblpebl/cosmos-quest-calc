@@ -5,10 +5,11 @@ package AI;
 
 import Formations.Creature;
 import Formations.CreatureFactory;
+import Formations.Elements;
+import Formations.Elements.Element;
 import Formations.Formation;
 import Formations.Hero;
 import Formations.Monster;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -59,7 +60,7 @@ public abstract class AISolver implements Runnable{
     
     //determines if the monsters in the given list can all be summoned with the followers you have
     protected boolean canAffordMonsters(LinkedList<Creature> combo) {
-        int sum = 0;
+        long sum = 0;
         for (Creature c : combo){
             sum += c.getFollowers();
         }
@@ -92,7 +93,7 @@ public abstract class AISolver implements Runnable{
     
     protected Monster getStrongestAffordableMonster(){//0 followers?
         Monster strongestMonster = null;
-        for (Creature.Element element: Creature.Element.values()){
+        for (Element element: Elements.MONSTER_ELEMENTS){
             for (int i = Monster.TOTAL_TIERS; i > 0; i --){
                 Monster currentMonster = CreatureFactory.getMonster(element,i);
                 if(currentMonster.getFollowers() <= followers){
@@ -113,7 +114,7 @@ public abstract class AISolver implements Runnable{
             creatureList.add(hero);
         }
         //add all monsters
-        for (Creature.Element element: Creature.Element.values()){
+        for (Element element: Elements.MONSTER_ELEMENTS){
             
             if (mindFollowers()){
                 for (int i = Monster.TOTAL_TIERS; i > 0; i --){//replace with addUsefulMonsters?
@@ -129,7 +130,7 @@ public abstract class AISolver implements Runnable{
     }
     
     //adds all useful monsters of a specified element to the list. Weeds out the bottom tier monsters
-    protected void addAllUsefulMonsters(List<Creature> creatureList, Creature.Element element){
+    protected void addAllUsefulMonsters(List<Creature> creatureList, Element element){
         Monster averageMonster = null;// the highest tier monster you can spam the entire row with
         long averageFollowers = followers/maxCreatures;
         for (int i = Monster.TOTAL_TIERS; i > 0; i --){
@@ -154,7 +155,7 @@ public abstract class AISolver implements Runnable{
     }
     
     //only adds the strongest monsters for each element and any lower tier monsters that may have more HP or att than them at the cost of the other
-    protected void addStrongestMonsters(List<Creature> creatureList, Creature.Element element){
+    protected void addStrongestMonsters(List<Creature> creatureList, Element element){
         Monster averageMonster = null;// the highest tier monster you can spam the entire row with
         
         for (int i = Monster.TOTAL_TIERS; i > 0; i --){
@@ -193,6 +194,7 @@ public abstract class AISolver implements Runnable{
     protected int strengthViability(Creature c){
         if (c instanceof Hero){
             return 1000000000 + c.getSpecialAbility().viability();
+            //return 20 * c.getSpecialAbility().viability();
         }
         return c.getSpecialAbility().viability();
         
@@ -208,7 +210,8 @@ public abstract class AISolver implements Runnable{
             
             //if strength (~= follower count) is greater than average, use the difference to nerf it
             if (baseViability > averageFollowers){
-                return (int)(1.2*(double)averageFollowers * averageFollowers / baseViability);//maybe this is too much of a nerf to high tiers?
+                //return (int)(1.5*(double)averageFollowers * averageFollowers / baseViability);//maybe this is too much of a nerf to high tiers?
+                return baseViability;
             }
             else{
                 return baseViability;

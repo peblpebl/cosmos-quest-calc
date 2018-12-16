@@ -18,12 +18,11 @@ public class MonsterBuff extends SpecialAbility{
         super(owner);
         this.multiplier = multiplier;
     }
-    
-    @Override
-    public double extraDamage(Formation thisFormation, Formation enemyFormation) {
-        return owner.getBaseAtt() * Math.pow(multiplier, monstersBehind(thisFormation)) - owner.getBaseAtt();
-    }
 
+    @Override
+    public void prepareForFight(Formation thisFormation, Formation enemyFormation){
+        owner.setCurrentAtt((long)(Math.ceil(owner.getBaseAtt() * Math.pow(multiplier, monstersBehind(thisFormation)))));
+    }
     
     private int monstersBehind(Formation f){
         int numBehind = 0;
@@ -50,6 +49,11 @@ public class MonsterBuff extends SpecialAbility{
     @Override
     public String getDescription() {
         return "Monsters behind multiply attack by " + multiplier;
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
     }
     
     @Override

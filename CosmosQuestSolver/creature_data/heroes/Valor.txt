@@ -1,0 +1,10 @@
+id 3
+rarity Common
+Air
+baseAtt 10
+baseHP 20
+skill StatAura 0 1 Air
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill StatAura 0 1 Air

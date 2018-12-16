@@ -4,7 +4,9 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
+import Formations.Elements.Element;
 
 //the most common special ability. Increases the attack and armor of all creatures
 //of a specified element (everyone if element is null) (including the owner)
@@ -13,9 +15,9 @@ public class StatAura extends SpecialAbility{
     
     protected int attBoost;
     protected int armorBoost;
-    protected Creature.Element element;
+    protected Element element;
 
-    public StatAura(Creature owner, int attBoost, int armorBoost, Creature.Element element) {//if elsment is null, apply to all creatures
+    public StatAura(Creature owner, int attBoost, int armorBoost, Element element) {//if elsment is null, apply to all creatures
         super(owner);
         this.attBoost = attBoost;
         this.armorBoost = armorBoost;
@@ -77,6 +79,11 @@ public class StatAura extends SpecialAbility{
             return "";
         }
         return sb.toString();
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + attBoost + " " + armorBoost + " " + Elements.getString(element);
     }
     
     @Override

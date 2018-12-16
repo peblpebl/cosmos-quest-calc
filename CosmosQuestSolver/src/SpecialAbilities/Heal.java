@@ -44,6 +44,11 @@ public class Heal extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + amount;
+    }
+    
+    @Override
     public int viability() {
         return (owner.getBaseHP() * owner.getBaseAtt()) + (owner.getBaseHP() * amount * Formation.MAX_MEMBERS/2);
     }

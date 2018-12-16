@@ -1,0 +1,10 @@
+id 59
+rarity Legendary
+Fire
+baseAtt 12
+baseHP 65
+skill Ricochet 0.5 5
+tier1Att 0
+tier2HP 0
+tier4Stats 0
+tier5Skill Ricochet 0.5 5

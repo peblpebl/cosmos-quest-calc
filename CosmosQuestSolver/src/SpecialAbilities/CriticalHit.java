@@ -4,14 +4,17 @@
 package SpecialAbilities;
 
 import Formations.Creature;
+import Formations.Elements;
 import Formations.Formation;
 
-//attacks a random enemy each turn (only one hit, enemy in first is not guarenteed to get hit)
+//seed based randomness determines if damage is multiplied by a certain amount.
 //used by Pokerface
 public class CriticalHit extends SpecialAbility{
     
     private double multiplier;
     private int turn = 0;
+    private static boolean alwaysHit = false;//temp until fixed
+    private static long seed = -1;
 
     public CriticalHit(Creature owner, double multiplier) {
         super(owner);
@@ -27,7 +30,8 @@ public class CriticalHit extends SpecialAbility{
     
     @Override
     public void prepareForFight(Formation thisFormation, Formation enemyFormation) {
-        enemyFormation.getTurnSeed(enemyFormation, turn);//gets formation to generate seed at the beginning of the fight. seed might change if called mid-fight
+        //enemyFormation.getTurnSeed(enemyFormation, turn);//gets formation to generate seed at the beginning of the fight. seed might change if called mid-fight
+        seed = enemyFormation.getTurnSeed(0);
     }
     
     @Override
@@ -37,9 +41,11 @@ public class CriticalHit extends SpecialAbility{
     
     @Override
     public double extraDamage(Formation thisFormation, Formation enemyFormation){//damage boost from other heroes stacks with crit
-        if (true/*Math.abs(thisFormation.getTurnSeed(enemyFormation,turn)) % 2 == 1*/){
+        //if (alwaysHit || thisFormation.getTurnSeed(enemyFormation,turn) % 2 == 0){
+        //if (enemyFormation.getTurnSeed(Formation.STALEMATE_CUTOFF_POINT-1-turn) % 2 == 0){
+        if (Formation.getTurnSeed(seed,Formation.STALEMATE_CUTOFF_POINT-1-turn) % 2 == 0){
             //test this more with data?
-            return (multiplier-1) * (owner.getCurrentAtt()+owner.getAttBoost()-(enemyFormation.getFrontCreature().getArmor()/owner.elementDamageMultiplier(enemyFormation.getFrontCreature().getElement())));
+            return (multiplier-1) * (owner.getCurrentAtt()+owner.getAttBoost()-(enemyFormation.getFrontCreature().getArmor()/Elements.elementDamageMultiplier(owner,enemyFormation.getFrontCreature().getElement())));
         }
         else{
             return 0;
@@ -73,6 +79,11 @@ public class CriticalHit extends SpecialAbility{
             return "Has a 50% chance to deal x" + (int)multiplier + " damage";
         }
         return "Has a 50% chance to deal x" + multiplier + " damage";
+    }
+    
+    @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + multiplier;
     }
     
     @Override

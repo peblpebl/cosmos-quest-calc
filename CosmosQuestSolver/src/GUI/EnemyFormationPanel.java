@@ -6,6 +6,7 @@ package GUI;
 import Formations.Formation;
 import Formations.Creature;
 import Formations.CreatureFactory;
+import Formations.Hero;
 import java.awt.Dimension;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
@@ -20,13 +21,13 @@ public class EnemyFormationPanel extends JPanel{
     
     private EnemyFormationSinglePanel[] panels;
     
-    public EnemyFormationPanel(EnemySelectFrame frame, EnemyFormationMakerPanel enemyFormationMakerPanel, boolean facingRight, boolean load) {
+    public EnemyFormationPanel(EnemySelectFrame frame, EnemyFormationMakerPanel enemyFormationMakerPanel, boolean facingRight) {
         this.frame = frame;
         this.facingRight = facingRight;
         this.enemyFormationMakerPanel = enemyFormationMakerPanel;
         
         panels = new EnemyFormationSinglePanel[Formation.MAX_MEMBERS];
-        if (facingRight){
+        if (facingRight){//condense into method?
             for (int i = panels.length - 1; i >= 0; i--){
                 panels[i] = new EnemyFormationSinglePanel(frame, enemyFormationMakerPanel,this,null,facingRight);
                 add(panels[i]);
@@ -46,9 +47,6 @@ public class EnemyFormationPanel extends JPanel{
         
         setOpaque(false);
         
-        if (load){
-            load();
-        }
         
     }
     
@@ -107,9 +105,39 @@ public class EnemyFormationPanel extends JPanel{
         return new Formation(list);
     }
     
-    private void load(){
+    public void load(){
         setFormation(CreatureFactory.loadFormation("save data/quest formation data",facingRight));
+        syncHeroes();
         frame.parametersChanged();
+    }
+    
+    //makes the heroes loaded in reference the same heroes in memory as the ones in the hero selection panel
+    //this way, they change levels when you change the other's levels
+    public void syncHeroes(){
+        for (int i = 0; i < panels.length; i++){
+            if (panels[i].getCreature() instanceof Hero){
+                Hero h = (Hero)panels[i].getCreature();
+                enemyFormationMakerPanel.setHeroLevel(h.getName(),h.getLevel());
+                panels[i].setCreature(enemyFormationMakerPanel.getHero(h.getName()));
+            }
+        }
+    }
+
+    void removeCreature(String name) {
+        for (int i = 0; i < panels.length; i++){
+            if (panels[i].getCreature() != null && panels[i].getCreature().getName().equals(name)){
+                panels[i].setCreature(null);
+            }
+        }
+    }
+
+    boolean containsCreature(String name) {
+        for (int i = 0; i < panels.length; i++){
+            if (panels[i].getCreature() != null && panels[i].getCreature().getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
     
 }

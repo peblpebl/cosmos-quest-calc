@@ -36,6 +36,11 @@ public class StartingDamage extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + amount;
+    }
+    
+    @Override
     public int viability() {
         return owner.getBaseHP() * (owner.getBaseAtt() + Formation.MAX_MEMBERS * amount);
     }

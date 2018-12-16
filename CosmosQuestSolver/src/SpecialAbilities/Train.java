@@ -46,6 +46,11 @@ public class Train extends SpecialAbility{
     }
     
     @Override
+    public String getParseString() {
+        return this.getClass().getSimpleName() + " " + amount;
+    }
+    
+    @Override
     public int viability() {
         int att = (int)(owner.getBaseAtt() + (owner.getBaseHP() * amount/75.0));//calculate odds of boost applying assuming random placement**
         return owner.getBaseHP() * att;
